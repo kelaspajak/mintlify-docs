@@ -1,0 +1,47 @@
+---
+title: "Akun Beban"
+description: "Kategori untuk beban operasional, keuangan, dan beban terkait pajak."
+mode: "center"
+---
+
+| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
+| :--- | :--- | :--- | :--- | :--- |
+| 5.1.1 | Beban Gaji | `expenses.operational.payroll.salary` | Debit | Pembayaran gaji bulanan |
+| 5.1.2 | Beban BPJS Kesehatan | `expenses.operational.payroll.bpjs_kesehatan` | Debit | Iuran BPJS dari perusahaan |
+| 5.2.1 | Beban Pemasaran | `expenses.operational.marketing.instagram_ads` | Debit | Biaya kampanye iklan |
+| 5.3.1 | Beban Bunga | `expenses.financial.interest` | Debit | Pembayaran bunga pinjaman |
+| 5.4.1 | Beban Tak Dapat Dikurangkan | `expenses.tax.non_deductible.representasi` | Debit | Biaya representasi |
+
+#### Contoh: Pencatatan Gaji
+
+```json
+{
+  "date": "2025-06-30",
+  "description": "Pembayaran gaji bulan Juni",
+  "entries": [
+    {
+      "account": "expenses.operational.payroll.salary",
+      "debit": 15000000,
+      "credit": 0
+    },
+    {
+      "account": "expenses.operational.payroll.bpjs_kesehatan",
+      "debit": 500000,
+      "credit": 0
+    },
+    {
+      "account": "liabilities.payable.vendor",
+      "debit": 0,
+      "credit": 15500000,
+      "metadata": {
+        "vendor": "payroll_provider"
+      }
+    }
+  ]
+}
+
+```
+
+<Tip>
+Tips Pajak: Tandai beban yang tidak dapat menjadi pengurang pajak (non-deductible) dengan sufiks `.non_deductible` atau `.nd` agar dapat dikecualikan secara otomatis saat pelaporan.
+</Tip>

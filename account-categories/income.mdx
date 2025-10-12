@@ -1,0 +1,45 @@
+---
+title: "Akun Pendapatan"
+description: "Namespace untuk pendapatan dari penjualan produk, jasa, dan penghasilan lainnya."
+mode: "center"
+---
+
+| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
+| :--- | :--- | :--- | :--- | :--- |
+| 4.1.1 | Penjualan Produk | `income.sales.product.digital` | Kredit | Pendapatan langganan SaaS |
+| 4.1.2 | Pendapatan Jasa | `income.sales.service.consulting` | Kredit | Pendapatan jasa implementasi |
+| 4.2.1 | Pendapatan Lain-Lain | `income.other.operational` | Kredit | Pendapatan dari pelatihan |
+| 4.3.1 | Pendapatan Bunga | `income.financial.interest` | Kredit | Bunga atas deposito bank |
+| 4.4.1 | Pendapatan Final | `income.sales.service.construction.final` | Kredit | Pendapatan dengan PPh Final |
+
+#### Contoh: Transaksi dengan PPN
+
+```json
+{
+  "date": "2025-05-20",
+  "description": "Pendapatan jasa pengembangan website (termasuk PPN)",
+  "entries": [
+    {
+      "account": "assets.receivable.customer.acme_corp",
+      "debit": 11100000,
+      "credit": 0,
+      "metadata": {
+        "invoice": "INV-2025-001"
+      }
+    },
+    {
+      "account": "income.sales.service.website",
+      "debit": 0,
+      "credit": 10000000
+    },
+    {
+      "account": "liabilities.tax.payable.ppn",
+      "debit": 0,
+      "credit": 1100000
+    }
+  ]
+}
+```
+
+<Tip>Praktik Terbaik: Tambahkan sufiks `.final` pada akun yang dikenakan PPh Final untuk mempermudah pelaporan pajak secara terpisah.</Tip>
+

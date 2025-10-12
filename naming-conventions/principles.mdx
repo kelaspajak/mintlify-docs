@@ -1,0 +1,30 @@
+---
+title: "Prinsip Penamaan"
+description: "Filosofi inti untuk memperluas namespace akun sesuai 'Standar Penamaan Akun' versi 'Less Summer'."
+---
+
+# Deterministik & Deskriptif
+
+Setiap segmen dalam struktur akun harus dapat menjelaskan tujuannya tanpa memerlukan dokumentasi tambahan. Hindari penggunaan istilah umum seperti `lain-lain` atau `serba-serbi`.
+
+Sebagai contoh, `expenses.operational.marketing.instagram_ads` lebih baik daripada `expenses.marketing.digital` jika pengeluaran tersebut spesifik untuk satu kanal.
+
+# Ramah Mesin
+
+- Gunakan token alfanumerik dengan huruf kecil.
+- Gunakan titik (`.`) sebagai satu-satunya pemisah hierarki.
+- Gunakan garis bawah (`_`) hanya untuk istilah majemuk yang maknanya perlu dipertahankan sebagai satu kesatuan (contoh: `assets.cash.wallet.shopee_pay`).
+
+# Kejelasan Konteks Lokal
+
+Sertakan semantic yang relevan dengan aturan pajak di Indonesia jika diperlukan:
+
+- **Pemotongan Pajak**: `liabilities.tax.payable.pph23`.
+- **Penghasilan Final**: Tambahkan sufiks `.final` jika penghasilan dikenai PPh Final (contoh: `income.sales.service.construction.final`).
+- **Beban Non-Deductible**: Tambahkan sufiks `.nd` jika beban tidak dapat menjadi pengurang penghasilan kena pajak (contoh: `expenses.operational.entertainment.nd`).
+
+# Tata Kelola & Kontrol Perubahan
+
+- Setiap usulan penambahan akun baru harus didokumentasikan, lengkap dengan alasan dan pemetaannya ke kode PSAK/IFRS.
+- Tunjuk penanggung jawab untuk setiap segmen *namespace* (misalnya, tim operasional keuangan mengelola `expenses.operational`, sedangkan tim pajak mengelola `liabilities.tax`).
+- Lakukan kontrol versi terhadap setiap perubahan dan siapkan tabel pemetaan dari sistem lama ke baru untuk mempermudah proses migrasi.

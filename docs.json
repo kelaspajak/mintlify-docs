@@ -1,12 +1,23 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Akuntansi Pajak",
   "colors": {
-    "primary": "#16A34A",
+    "primary": "#eb5611",
     "light": "#07C983",
-    "dark": "#15803D"
+    "dark": "#eb5611"
   },
+  "seo": {
+    "indexing": "all"
+  },
+  "image": {
+    "light": "/logo/logo-diskusi-perpajakan.png"
+  },
+  "styling": {
+  "codeblocks": {
+    "theme": "dracula"
+  }
+},
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
@@ -15,6 +26,7 @@
         "groups": [
           {
             "group": "Getting started",
+            "hidden": true,
             "pages": [
               "index",
               "quickstart",
@@ -23,6 +35,7 @@
           },
           {
             "group": "Customization",
+            "hidden": true,
             "pages": [
               "essentials/settings",
               "essentials/navigation"
@@ -30,6 +43,7 @@
           },
           {
             "group": "Writing content",
+            "hidden": true,
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -39,16 +53,56 @@
           },
           {
             "group": "AI tools",
+            "hidden": true,
             "pages": [
               "ai-tools/cursor",
               "ai-tools/claude-code",
               "ai-tools/windsurf"
+            ]
+          },
+          {
+            "group": "Fundamental",
+            "pages": [
+              "fundamental/introduction",
+              "fundamental/double-entry",
+              "fundamental/hierarchy",
+              "fundamental/account-types"
+            ]
+          },
+          {
+            "group": "Panduan Penamaan Akun",
+            "pages": [
+              "naming-conventions/introduction",
+              "naming-conventions/principles",
+              "naming-conventions/format-syntax",
+              "naming-conventions/best-practices"
+            ]
+          },
+          {
+            "group": "Kategori Akun",
+            "pages": [
+              "account-categories/assets",
+              "account-categories/liabilities",
+              "account-categories/equity",
+              "account-categories/income",
+              "account-categories/expense"
+            ]
+          },
+          {
+            "group": "Implementasi",
+            "pages": [
+              "implementation/introduction",
+              "implementation/starting-from-scratch",
+              "implementation/migration",
+              "implementation/customization",
+              "implementation/maintenance"
             ]
           }
         ]
       },
       {
         "tab": "API reference",
+        "hidden": true,
         "groups": [
           {
             "group": "API documentation",
@@ -89,7 +143,7 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
+    "light": "/logo/logo-diskusi-perpajakan.png",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
@@ -98,24 +152,7 @@
         "label": "Support",
         "href": "mailto:hi@mintlify.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+    ]
   },
   "footer": {
     "socials": {

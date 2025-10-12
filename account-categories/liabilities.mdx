@@ -1,0 +1,40 @@
+---
+title: "Akun Liabilitas"
+description: "Kewajiban yang mencakup utang kepada pemasok, utang pajak, dan utang jangka panjang."
+mode: "center"
+---
+
+| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
+| :--- | :--- | :--- | :--- | :--- |
+| 2.1.1 | Utang Usaha | `liabilities.payable.vendor` | Kredit | Faktur dari pemasok |
+| 2.1.2 | Utang PPN | `liabilities.tax.payable.ppn` | Kredit | PPN keluaran 11% |
+| 2.1.3 | Utang PPh Pasal 23 | `liabilities.tax.payable.pph23` | Kredit | Pemotongan atas jasa |
+| 2.2.1 | Beban Akrual Gaji | `liabilities.accrued.payroll` | Kredit | Akrual gaji akhir bulan |
+| 2.3.1 | Utang Jangka Panjang | `liabilities.loan.long_term.bank` | Kredit | Pinjaman dari bank |
+
+#### Contoh: Skenario Pemotongan Pajak
+
+```json
+{
+  "date": "2025-04-15",
+  "description": "Pembayaran jasa konsultasi setelah dipotong PPh 23",
+  "entries": [
+    {
+      "account": "expenses.professional.consulting",
+      "debit": 10000000,
+      "credit": 0
+    },
+    {
+      "account": "liabilities.tax.payable.pph23",
+      "debit": 0,
+      "credit": 200000
+    },
+    {
+      "account": "assets.cash.bank.bca",
+      "debit": 0,
+      "credit": 9800000
+    }
+  ]
+}
+```
+<Tip>Catatan: Pastikan pembayaran pajak dicatat sebagai pengurang kas `assets.cash.bank.<bank>` untuk mengurangi saldo utang pajak.</Tip>

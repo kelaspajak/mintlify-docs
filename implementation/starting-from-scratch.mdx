@@ -1,0 +1,40 @@
+---
+title: "Memulai dari Awal" 
+description: "Langkah-langkah untuk membangun bagan akun dari nol menggunakan 'Standar Penamaan Akun' versi 'Less Summer'."
+---
+Mengimplementasikan bagan akun yang terstruktur sejak awal adalah fondasi untuk pelaporan keuangan yang akurat dan skalabel. 
+
+Gunakan panduan ini jika Anda sedang mendirikan entitas baru atau merombak total sistem keuangan Anda.
+
+### Langkah 1: Tinjau Templat Dasar
+Mulailah dengan salah satu templat yang telah kami sediakan untuk Usaha Kecil, Pekerja Lepas (Freelancer), atau Keluarga. 
+
+Templat ini mencakup akun-akun yang paling umum digunakan dan dapat menjadi titik awal yang baik.
+
+### Langkah 2: Identifikasi Kebutuhan Spesifik
+Setiap bisnis memiliki keunikan. Lakukan analisis untuk mengidentifikasi akun-akun khusus yang Anda butuhkan:
+- **Sumber Pendapatan**: Apakah Anda menjual produk fisik, produk digital, atau jasa? Buat akun spesifik seperti `income.sales.product.widget` atau `income.sales.service.consulting`.
+- **Saluran Biaya**: Di mana Anda paling banyak membelanjakan uang? Rinci akun beban Anda, misalnya `expenses.operational.marketing.google_ads` atau `expenses.operational.software.saas.crm`.
+- **Kewajiban Pajak**: Konsultasikan dengan ahli pajak untuk memastikan semua akun kewajiban pajak yang relevan (misalnya, PPh Pasal 21, PPh Pasal 23, PPN) telah disiapkan dengan benar.
+
+### Langkah 3: Definisikan Namespace dan Metadata
+Setelah daftar akun tersusun, definisikan path unik untuk setiap akun sesuai dengan prinsip penamaan. 
+
+Tambahkan metadata penting seperti:
+- `currency`: Untuk akun dalam mata uang asing.
+- `tax_article`: Untuk akun yang terkait dengan pasal pajak tertentu.
+- `department_code`: Jika Anda ingin melacak biaya per departemen.
+
+### Langkah 4: Dokumentasikan dan Latih Tim Anda
+Buat dokumentasi internal yang menjelaskan struktur bagan akun, definisi setiap akun, dan kapan akun tersebut harus digunakan. 
+
+Latih tim Anda untuk memastikan semua orang memahami cara mencatat transaksi secara konsisten.
+
+### Daftar Periksa Implementasi Awal
+
+- `[ ]` Pilih templat yang paling sesuai.
+- `[ ]` Buat daftar semua sumber pendapatan, jenis biaya, aset, dan liabilitas.
+- `[ ]` Buat `path` unik untuk setiap akun.
+- `[ ]` Tentukan metadata yang relevan untuk setiap akun.
+- `[ ]` Dokumentasikan seluruh bagan akun.
+- `[ ]` Lakukan sesi pelatihan dengan tim terkait.

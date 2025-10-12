@@ -1,0 +1,34 @@
+---
+title: "Akun Ekuitas"
+description: "Mencakup modal pemilik, laba ditahan, dan penyesuaian ekuitas lainnya."
+mode: "wide"
+---
+
+| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
+| :--- | :--- | :--- | :--- | :--- |
+| 3.1.1 | Modal Disetor | `equity.paid_in.capital` | Kredit | Investasi dari pendiri |
+| 3.2.1 | Laba Ditahan | `equity.retained_earnings` | Kredit | Akumulasi laba/rugi |
+| 3.3.1 | Dividen Diumumkan | `equity.dividend.declared` | Kredit | Pengumuman dividen |
+
+#### Contoh: Setoran Modal
+
+```json
+{
+  "date": "2025-01-01",
+  "description": "Setoran modal awal dari pendiri",
+  "entries": [
+    {
+      "account": "assets.cash.bank.bca",
+      "debit": 50000000,
+      "credit": 0
+    },
+    {
+      "account": "equity.paid_in.capital",
+      "debit": 0,
+      "credit": 50000000
+    }
+  ]
+}
+```
+
+<Tip>Tips: Untuk melacak penyesuaian seperti surplus revaluasi, gunakan sufiks yang jelas, misalnya `equity.other_comprehensive.revaluation`, agar mudah diidentifikasi.</Tip>

@@ -1,0 +1,50 @@
+---
+title: "Migrasi dari Sistem Lama" 
+description: "Strategi dan alat untuk memetakan bagan akun yang sudah ada ke 'Standar Penamaan Akun' versi 'Less Summer'."
+---
+
+Migrasi dari bagan akun lama ke standar baru memerlukan perencanaan yang cermat untuk memastikan integritas data historis tetap terjaga.
+
+<Steps>
+<Step title="Pemetaan (Mapping)">
+
+Langkah pertama adalah membuat tabel pemetaan antara akun lama dan akun baru.
+| Akun Lama (Nama) | Kode Akun Lama | Path Akun Baru (Standar) | Catatan |
+|------------------|----------------|--------------------------|---------|
+| Biaya Iklan Facebook |601-05        | `expenses.operational.marketing.facebook_ads` | Gabungkan semua biaya media sosial
+| Bank Mandiri IDR | 101-02 | `assets.cash.bank.mandiri.idr` | Tambahkan sufiks mata uang |
+| Hutang PPN | 205-01 | `liabilities.tax.payable.ppn` | Sesuai standar |
+
+#### Praktik Terbaik:
+
+- Gunakan spreadsheet atau alat bantu basis data untuk mengelola proses pemetaan.
+
+- Identifikasi akun-akun lama yang akan diarsipkan (tidak aktif lagi) dan akun-akun yang dapat digabungkan.
+
+- Libatkan tim akuntansi untuk memastikan pemetaan akurat dan sesuai dengan kebutuhan pelaporan.
+</Step>
+
+<Step title="Migrasi Data">
+
+Setelah pemetaan selesai, Anda perlu memigrasikan saldo dan riwayat transaksi.
+
+1. Tentukan Tanggal Batas (Cut-off Date): Pilih tanggal di mana Anda akan berhenti menggunakan sistem lama dan mulai menggunakan sistem baru (misalnya, akhir bulan atau akhir kuartal).
+
+2. Ekspor Saldo Awal: Ekspor neraca saldo (trial balance) dari sistem lama per tanggal batas.
+
+3. Impor Saldo Awal: Impor saldo awal tersebut ke sistem baru menggunakan path akun yang baru. Catat ini sebagai satu jurnal umum besar dengan deskripsi "Migrasi Saldo Awal".
+</Step>
+
+<Step title="Validasi">
+Setelah data dimigrasikan, lakukan validasi untuk memastikan semuanya berjalan lancar:
+
+- **Rekonsiliasi Neraca Saldo**: Pastikan total debit dan kredit pada neraca saldo di sistem baru sama dengan di sistem lama.
+
+- **Uji Coba Transaksi**: Lakukan beberapa transaksi percobaan di sistem baru untuk memastikan jurnal dan pelaporan berfungsi seperti yang diharapkan.
+
+- **Arsipkan Sistem Lama**: Setelah validasi berhasil, arsipkan sistem lama dalam mode hanya-baca (*read-only*) untuk referensi di masa mendatang.
+</Step>
+</Steps>
+
+
+<Info>Tips: Simpan ID atau kode akun lama di kolom metadata pada akun baru untuk memudahkan penelusuran dan audit di kemudian hari.</Info>

@@ -1,0 +1,46 @@
+---
+title: "Struktur Hierarki Akun"
+description: "Merancang namespace hierarkis agar struktur akun menjadi jelas dan mudah dibaca oleh manusia dan mesin."
+---
+
+# Kategori Utama
+
+"Standar Penamaan Akun" mengelompokkan akun ke dalam lima kategori utama yang mencerminkan struktur laporan posisi keuangan (neraca) dan laporan laba rugi:
+
+1.  `assets` (Aset)
+2.  `liabilities` (Liabilitas)
+3.  `equity` (Ekuitas)
+4.  `income` (Pendapatan)
+5.  `expenses` (Beban)
+
+Setiap kategori utama menerapkan konvensi penamaan dan saldo normal yang seragam untuk memastikan laporan keuangan tetap konsisten di berbagai yurisdiksi.
+
+## Aturan Hierarki
+
+- Gunakan token alfanumerik huruf kecil yang dipisahkan oleh titik (`.`).
+- Batasi kedalaman hierarki hingga **empat atau lima level**, kecuali ada kebutuhan spesifik yang mengharuskan lebih.
+- Prioritaskan segmen yang deskriptif (`expenses.operational.marketing.instagram_ads`) daripada kategori umum yang ambigu.
+- Gunakan garis bawah (`_`) hanya untuk istilah majemuk yang maknanya perlu dipertahankan sebagai satu kesatuan (`assets.cash.wallet.shopee_pay`).
+
+## Contoh Hierarki
+
+* `assets.cash.bank.bca`
+* `assets.receivable.customer.pt_rajin_belanja`
+* `liabilities.tax.payable.ppn`
+* `expenses.tax.prepaid.pph21`
+* `income.sales.service.consulting`
+
+
+### Panduan Penamaan Lokal (Indonesia)
+- Pemotongan PPh: Tambahkan identifikasi pasal pajak, contoh: `liabilities.tax.payable.pph23`.
+
+- PPN: Gunakan path yang berbeda untuk memisahkan PPN Keluaran dan PPN Masukan: `liabilities.tax.payable.ppn` vs `assets.tax.prepaid.ppn`.
+
+- Iuran Wajib: Tempatkan iuran seperti BPJS atau Iuran Pengelolaan Lingkungan (IPL) di bawah beban operasional yang relevan, misalnya `expenses.operational.payroll.bpjs_ketenagakerjaan` atau `expenses.operational.facilities.ipl`.
+
+### Daftar Periksa Tata Kelola
+- Validasi setiap path akun baru terhadap daftar namespace yang telah disetujui.
+
+- Dokumentasikan setiap pengecualian, lengkap dengan alasan dan batas waktu evaluasi kembali.
+
+- Simpan tabel pemetaan antara path akun standar dengan sistem eksternal (misalnya, kode PSAK atau referensi IFRS).

@@ -1,0 +1,50 @@
+---
+title: "Akun Aset"
+description: "Namespace standar untuk aset, mencakup kas, piutang, dan aset tetap."
+mode: "center"
+---
+
+| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
+| :--- | :--- | :--- | :--- | :--- |
+| 1.1.1 | Kas | `assets.cash` | Debit | Setoran modal awal |
+| 1.1.2 | Bank - BCA | `assets.cash.bank.bca` | Debit | Pembayaran via transfer bank |
+| 1.2.1 | Piutang Usaha | `assets.receivable.customer.pt_tanjung_bira` | Debit | Penerbitan faktur ke PT Tanjung Bira |
+| 1.3.1 | PPN Dibayar di Muka | `assets.tax.prepaid.ppn` | Debit | PPN masukan atas pembelian |
+| 1.4.1 | Aset Tetap - Laptop | `assets.fixed.equipment.laptop` | Debit | Pembelian laptop |
+
+#### Contoh: Rekening Bank Multi-Mata Uang
+
+```json
+{
+  "path": "assets.cash.bank.bca.usd",
+  "name": "Bank BCA USD",
+  "type": "asset",
+  "normal_balance": "debit",
+  "currency": "USD",
+  "metadata": {
+    "bank_code": "bca",
+    "account_number": "9876543210"
+  }
+}
+```
+
+#### Contoh Transaksi
+
+```json
+{
+  "date": "2025-03-05",
+  "description": "Pelunasan faktur INV-2025-015 dari Acme Corp",
+  "entries": [
+    {
+      "account": "assets.cash.bank.bca",
+      "debit": 11100000,
+      "credit": 0
+    },
+    {
+      "account": "assets.receivable.customer.pt_tanjung_bira",
+      "debit": 0,
+      "credit": 11100000
+    }
+  ]
+}
+```

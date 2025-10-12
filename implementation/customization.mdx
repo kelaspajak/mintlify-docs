@@ -1,0 +1,46 @@
+---
+title: "Kustomisasi Standar" 
+description: "Panduan untuk memperluas atau mengadaptasi 'Standar Penamaan Akun' agar sesuai dengan kebutuhan unik industri atau organisasi Anda."
+---
+
+"Standar Penamaan Akun" versi "Less Summer" dirancang untuk menjadi fleksibel. Anda dapat dan dianjurkan untuk melakukan kustomisasi agar sesuai dengan kebutuhan spesifik Anda.
+
+### Kapan Harus Melakukan Kustomisasi?
+- **Kebutuhan Industri**: Industri tertentu memiliki akun yang sangat spesifik. Misalnya, perusahaan manufaktur mungkin memerlukan rincian `expenses.operational.cogs` (Harga Pokok Penjualan) yang lebih detail seperti `.raw_materials`, `.direct_labor`, dan `.factory_overhead`.
+
+- **Pelaporan Internal**: Jika manajemen memerlukan pelacakan biaya berdasarkan proyek, departemen, atau lokasi, Anda dapat menambahkan segmen tambahan pada path akun.
+
+- **Integrasi Sistem**: Saat mengintegrasikan dengan sistem lain (misalnya, CRM atau platform e-commerce), Anda mungkin perlu membuat akun khusus untuk melacak pendapatan atau biaya dari sumber tertentu.
+
+### Cara Melakukan Kustomisasi
+1. **Menambahkan Kedalaman (Sub-kategori)**
+   Cara paling umum untuk kustomisasi adalah dengan menambahkan level baru pada hierarki.
+   - Standar: `expenses.operational.software`
+   - Kustom: `expenses.operational.software.saas.crm`
+   - Kustom: `expenses.operational.software.saas.accounting`
+   Ini memungkinkan Anda mendapatkan laporan yang lebih terperinci tanpa mengorbankan struktur utama.
+
+2. **Menggunakan Metadata**
+   Untuk informasi yang tidak cocok dimasukkan ke dalam hierarki, gunakan metadata.
+   ```
+   {
+    "path": "expenses.operational.travel",
+    "name": "Beban Perjalanan Dinas",
+    "metadata": {
+      "project_code": "PROJ-XYZ",
+      "employee_id": "EMP-007",
+      "is_billable": true
+      }
+    }
+    ```
+
+   Metadata sangat berguna untuk melacak data lintas akun tanpa membuat path menjadi terlalu panjang dan rumit.
+
+### Menjaga Konsistensi
+Saat melakukan kustomisasi, penting untuk tetap menjaga konsistensi:
+
+- **Dokumentasikan Aturan**: Buat panduan internal yang menjelaskan kapan dan bagaimana kustomisasi harus dilakukan.
+
+- **Tinjau Secara Berkala**: Lakukan tinjauan terhadap bagan akun secara berkala (misalnya, setiap tahun) untuk menghapus akun yang tidak lagi digunakan dan memastikan struktur tetap relevan.
+
+- **Gunakan Prinsip yang Sama**: Terapkan prinsip penamaan yang sama (huruf kecil, pemisah titik) pada segmen kustom Anda.

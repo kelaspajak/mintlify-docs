@@ -1,0 +1,42 @@
+---
+title: "Akuntansi Berbasis Sistem"
+description: "Konsep inti yang memperlakukan akuntansi sebagai sistem data yang terstruktur dan digerakkan oleh peristiwa."
+---
+
+"Standar Penamaan Akun" versi "Less Summer" memposisikan akuntansi sebagai sebuah model data yang deterministik.
+
+Dalam pendekatan ini, transaksi dianggap sebagai peristiwa yang tidak dapat diubah (*immutable*), akun sebagai *namespace* yang memiliki tipe, dan dokumen pendukung sebagai metadata yang terhubung.
+
+Bagian ini akan memperkenalkan kerangka berpikir yang menjadi landasan bagi setiap aturan penamaan dan pola implementasi dalam dokumentasi ini.
+
+## Topik
+
+- [Pencatatan Berpasangan sebagai Model Data](./double-entry/)
+- [Struktur Hierarki Akun](./hierarchy/)
+- [Entitas Inti dan Relasinya](./account-types/)
+
+Setiap halaman menggabungkan penjelasan konseptual dengan contoh dalam format JSON/YAML.
+
+<Columns cols={2}>
+  <Card
+    title="Double Entry"
+    icon="pen-to-square"
+    href="/double-entry"
+  >
+  Memodelkan akun dan transaksi sebagai struktur data yang bersifat imutabel dan selalu seimbang.
+  </Card>
+  <Card
+    title="Struktur Hierarki Akun"
+    icon="pen-to-square"
+    href="/hierarchy"
+  >
+  Merancang namespace hierarkis agar struktur akun menjadi jelas dan mudah dibaca oleh mesin.
+  </Card>
+  <Card
+    title="Entitas Inti dan Relasinya"
+    icon="pen-to-square"
+    href="/account-types"
+  >
+  Membahas komponen-komponen dasar yang membentuk model akuntansi dalam 'Standar Penamaan Akun' versi 'Less Summer'.
+  </Card>
+  </Columns>

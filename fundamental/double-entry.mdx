@@ -1,0 +1,57 @@
+---
+title: "Double Entry"
+description: "Memodelkan akun dan transaksi sebagai struktur data yang bersifat imutabel dan selalu seimbang."
+---
+
+### Buku Besar sebagai Catatan yang Tidak Dapat Diubah (Immutable Log)
+
+Setiap transaksi dalam adalah kejadian yang memiliki stempel waktu dan berisi minimal dua entri—satu debit dan satu kredit—yang totalnya harus seimbang (nol).
+
+Penyesuaian tidak dilakukan dengan mengedit riwayat, melainkan dicatat sebagai transaksi baru. Pendekatan ini menjaga jejak audit dan memungkinkan rekonstruksi kondisi keuangan layaknya *event sourcing*.
+
+```json
+{
+  "id": "txn-2025-10-10-001",
+  "date": "2025-10-10",
+  "description": "Pembelian laptop untuk departemen akuntansi",
+  "entries": [
+    {
+      "account": "assets.fixed.equipment.laptop",
+      "debit": 10000000,
+      "credit": 0,
+      "document_id": "INV-2025-091",
+      "metadata": {
+        "asset_tag": "AST-LPT-001"
+      }
+    },
+    {
+      "account": "assets.cash.bank.bca",
+      "debit": 0,
+      "credit": 10000000,
+      "document_id": "BCA-TRX-5521",
+      "metadata": {
+        "payment_method": "bank_transfer"
+      }
+    }
+  ]
+}
+```
+
+### Prinsip Keseimbangan
+- Total debit harus sama dengan total kredit dalam setiap transaksi.
+
+- Setiap akun memiliki saldo normal (debit atau kredit).
+
+- Saldo pada waktu tertentu dapat direkonstruksi dengan mengakumulasi semua peristiwa secara berurutan.
+
+### Pentingnya Imutabilitas
+- Jejak Audit: Regulator dan auditor dapat menelusuri kembali seluruh riwayat buku besar tanpa ada risiko perubahan tersembunyi.
+
+- Otomatisasi: Sistem lain dapat mengandalkan aliran data yang bersifat append-only untuk memicu alur kerja terkait.
+
+- Integritas Data: Gudang data atau API turunan tetap konsisten meskipun terjadi penyesuaian di buku besar.
+
+### Dokumen & Metadata Pendukung
+Hubungkan dokumen, pihak terkait, dan data kontekstual lainnya langsung di dalam entri jurnal. 
+
+Gunakan referensi (misalnya, pph23_withholding daripada catatan manual) agar analisis dan pemeriksaan kepatuhan dapat diotomatisasi.
