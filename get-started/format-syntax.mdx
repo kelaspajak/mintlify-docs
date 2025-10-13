@@ -1,0 +1,96 @@
+---
+title: "Struktur dan Sintaks"
+description: "Panduan lengkap untuk merancang dan menyusun hierarki akun yang logis, konsisten, dan mudah dibaca mesin."
+---
+
+"Standar Penamaan Akun" versi "Less Summer" menggunakan struktur hierarkis untuk mengelompokkan akun secara logis. Pendekatan ini membuat setiap akun menjadi jelas dan mudah dipahami, baik oleh manusia maupun mesin.
+
+### KATEGORI UTAMA
+Dasar dari hierarki ini adalah lima kategori utama yang mencerminkan laporan posisi keuangan (neraca) dan laporan laba rugi:
+
+- assets (Aset)
+
+- liabilities (Liabilitas)
+
+- equity (Ekuitas)
+
+- income (Pendapatan)
+
+- expenses (Beban)
+
+### POLA DAN SINTAKS UMUM
+Setiap akun dibentuk dengan mengikuti pola hierarkis yang dipisahkan oleh titik.
+
+Pola Umum:
+```[tipe].[kategori].[subkategori].[spesifik]```
+
+### CONTOH PENERAPAN
+Berikut adalah contoh penerapan untuk setiap kategori utama dalam format tabel.
+
+1. Aset (Assets)
+
+| Kode | Nama Akun | Path | Saldo Normal |
+|---|---|---|---|
+| 1.1.1 | Kas | assets.cash | Debit |
+| 1.1.2 | Bank BCA | assets.cash.bank.bca | Debit |
+| 1.2.1 | Piutang Usaha | assets.receivable.customer | Debit |
+| 1.3.1 | PPN Dibayar di Muka | assets.tax.prepaid.ppn | Debit |
+| 1.4.1 | Aset Tetap - Laptop | assets.fixed.equipment.laptop | Debit |
+
+2. Liabilitas (Liabilities)
+| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
+|-------|----------------------------|---------------------------------------|--------------|
+| 2.1.1 | Utang Usaha                | liabilities.payable.vendor            | Kredit       |
+| 2.1.2 | Utang PPN                  | liabilities.tax.payable.ppn           | Kredit       |
+| 2.1.3 | Utang PPh Pasal 23         | liabilities.tax.payable.pph23         | Kredit       |
+| 2.2.1 | Beban Akrual Gaji          | liabilities.accrued.payroll           | Kredit       |
+
+3. Ekuitas (Equity)
+| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
+|-------|----------------------------|---------------------------------------|--------------|
+| 3.1.1 | Modal Disetor              | equity.paid_in.capital                | Kredit       |
+| 3.2.1 | Laba Ditahan               | equity.retained_earnings              | Kredit       |
+
+4. Pendapatan (Income)
+| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
+|-------|----------------------------|---------------------------------------|--------------|
+| 4.1.1 | Penjualan Produk           | income.sales.product.digital          | Kredit       |
+| 4.1.2 | Pendapatan Jasa            | income.sales.service.consulting       | Kredit       |
+| 4.3.1 | Pendapatan Bunga           | income.financial.interest             | Kredit       |
+
+5. Beban (Expenses)
+| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
+|-------|----------------------------|---------------------------------------|--------------|
+| 5.1.1 | Beban Gaji                 | expenses.operational.payroll.salary   | Debit        |
+| 5.2.1 | Beban Pemasaran (Iklan)    | expenses.operational.marketing.ads    | Debit        |
+| 5.3.1 | Beban Bunga                | expenses.financial.interest           | Debit        |
+
+### ATURAN PENYUSUNAN
+Untuk menjaga konsistensi, ikuti aturan-aturan wajib berikut:
+
+Gunakan Format Baku: Gunakan huruf kecil (lowercase) dengan segmen yang dipisahkan oleh titik (.).
+
+Batasi Kedalaman: Usahakan kedalaman hierarki antara dua hingga lima level.
+
+Hindari Ambiguitas: Prioritaskan segmen yang deskriptif.
+
+Istilah Majemuk: Gunakan garis bawah (_) hanya jika sebuah istilah majemuk perlu dipertahankan sebagai satu kesatuan.
+
+Multi-Mata Uang: Tambahkan sufiks mata uang yang jelas (contoh: .idr, .usd).
+
+Multi-Entitas: Untuk struktur gabungan, sertakan pengenal entitas.
+
+### PANDUAN KONTEKS LOKAL (INDONESIA)
+- Pemotongan PPh: Tambahkan identifikasi pasal pajak pada akun terkait (contoh: liabilities.tax.payable.pph23).
+
+- PPN: Bedakan dengan jelas antara PPN Masukan (assets.tax.prepaid.ppn) dan PPN Keluaran (liabilities.tax.payable.ppn).
+
+- Iuran Wajib: Tempatkan iuran seperti BPJS di bawah beban operasional yang relevan.
+
+### WALAN NUMERIK DAN METADATA
+- Awalan Numerik (Opsional): Untuk menyelaraskan dengan sistem ERP lama, Anda bisa menambahkan awalan numerik. Pastikan penggunaannya konsisten.
+Contoh: 1.assets.cash.bank.bca atau 5.expenses.operational.marketing.instagram_ads
+
+- Penyelarasan Metadata: Anda juga dapat menghubungkan setiap akun dengan data tambahan (seperti kode PSAK atau referensi IFRS) untuk mempermudah otomatisasi dan analisis.
+
+Dengan mengikuti panduan ini, Anda dapat membangun bagan akun yang tidak hanya terstandar, tetapi juga fleksibel dan mudah dikelola.

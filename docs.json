@@ -3,7 +3,7 @@
   "theme": "mint",
   "name": "Akuntansi Pajak",
   "colors": {
-    "primary": "#eb5611",
+    "primary": "#ea580c",
     "light": "#07C983",
     "dark": "#eb5611"
   },
@@ -14,33 +14,16 @@
     "light": "/logo/logo-diskusi-perpajakan.png"
   },
   "styling": {
-  "codeblocks": {
-    "theme": "dracula"
-  }
-},
-  "favicon": "/favicon.svg",
+    "codeblocks": {
+      "theme": "dracula"
+    }
+  },
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Akuntansi",
         "groups": [
-          {
-            "group": "Getting started",
-            "hidden": true,
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "hidden": true,
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
           {
             "group": "Writing content",
             "hidden": true,
@@ -51,31 +34,14 @@
               "essentials/reusable-snippets"
             ]
           },
+
           {
-            "group": "AI tools",
-            "hidden": true,
+            "group": "Pendahuluan",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          },
-          {
-            "group": "Fundamental",
-            "pages": [
-              "fundamental/introduction",
-              "fundamental/double-entry",
-              "fundamental/hierarchy",
-              "fundamental/account-types"
-            ]
-          },
-          {
-            "group": "Panduan Penamaan Akun",
-            "pages": [
-              "naming-conventions/introduction",
-              "naming-conventions/principles",
-              "naming-conventions/format-syntax",
-              "naming-conventions/best-practices"
+              "get-started/welcome",
+              "get-started/quickstart",
+              "get-started/format-syntax",
+              "get-started/implementation"
             ]
           },
           {
@@ -90,6 +56,7 @@
           },
           {
             "group": "Implementasi",
+            "hidden": true,
             "pages": [
               "implementation/introduction",
               "implementation/starting-from-scratch",
@@ -99,66 +66,34 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API reference",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Grup Telegram",
+          "href": "https://t.me/diskusipajak",
+          "icon": "telegram"
         }
       ]
     }
   },
   "logo": {
     "light": "/logo/logo-diskusi-perpajakan.png",
-    "dark": "/logo/dark.svg"
+    "dark": "/logo/logo-diskusi-perpajakan.png"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "https://t.me/lesssummer"
       }
     ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/lesssummerize",
+      "telegram": "https://t.me/diskusipajak"
     }
   }
 }

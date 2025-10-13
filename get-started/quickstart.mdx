@@ -1,0 +1,45 @@
+---
+title: "Mulai Cepat (Quickstart)" description: "Langkah-langkah praktis untuk mulai menerapkan standar ini hanya dengan spreadsheet."
+---
+Anda tidak memerlukan software akuntansi yang rumit untuk memulai. Anda bisa menerapkan standar ini hanya dengan Google Sheets atau Microsoft Excel.
+
+### Yang Anda Butuhkan:
+Sebuah spreadsheet kosong.
+
+### Langkah-langkah:
+
+#### Buat Tiga Sheet Utama
+Buka spreadsheet Anda dan buat tiga sheet (tab) di bagian bawah:
+- `Bagan Akun`
+- `Jurnal Umum`
+- `Laporan Laba Rugi`
+
+#### Isi Sheet `Bagan Akun`
+Di sheet ini, buatlah daftar akun yang Anda butuhkan sesuai dengan standar penamaan. Salin contoh dasar dari dokumentasi Konsep Inti ke dalam sheet ini.
+
+Kolom yang Anda butuhkan minimal: 
+
+| `Kode` | `Nama Akun` | `Path Akun Standar` | `Saldo Normal` |
+
+![Bagan Akun](/images/bagan-akun.png)
+
+#### Catat Transaksi di Jurnal Umum
+Setiap kali ada transaksi (misalnya, penjualan atau pembelian), catat di sheet Jurnal Umum.
+
+Kolom yang dibutuhkan: 
+
+| `id_transaksi` | `Tanggal` | `kode akun` | `Path Akun Standar`,`nama akun` | `Debit` | `Kredit` | `Ket` |
+
+Saat mengisi kolom Path Akun, pastikan Anda menggunakan nama yang sama persis seperti yang ada di sheet Bagan Akun.
+
+![Bagan Akun](/images/jurnal-umum.png)
+
+#### Buat Laporan Sederhana
+
+Di sheet Laporan Laba Rugi, gunakan rumus `SUMIF`, `Pivot Table` atau langsung melakukan filter pada `Jurnal Umum` berdasarkan `Path Akun Standar`.
+
+Contoh:
+- Pendapatan: Jumlahkan semua akun yang diawali dengan income.
+- Beban: Jumlahkan semua akun yang diawali dengan expenses.
+
+Dengan tiga sheet ini, Anda sudah memiliki sistem akuntansi sederhana yang terstruktur dan siap untuk diimpor ke software akuntansi manapun di masa depan.

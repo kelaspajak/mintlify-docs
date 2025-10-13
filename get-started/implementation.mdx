@@ -1,0 +1,47 @@
+---
+title: "Panduan Implementasi" 
+description: "Cara menerapkan standar penamaan akun, baik untuk memulai dari awal maupun migrasi dari sistem lama."
+---
+Ada dua skenario utama dalam menerapkan standar ini: memulai dari awal untuk bisnis baru, atau memindahkan (migrasi) sistem yang sudah berjalan.
+
+## MEMULAI DARI AWAL (UNTUK BISNIS BARU)
+
+Jika Anda memulai dari awal, prosesnya jauh lebih sederhana.
+
+- Pilih Templat Dasar: Mulailah dengan templat bagan akun yang paling sesuai dengan kebutuhan Anda (misalnya, untuk usaha kecil, pekerja lepas, atau keuangan keluarga). Salin daftar akun dari templat tersebut.
+
+- Sesuaikan Kebutuhan: Tambah atau hapus akun sesuai dengan jenis transaksi yang Anda antisipasi. Misalnya, jika Anda tidak akan pernah berurusan dengan PPN, hapus akun tersebut. Jika Anda menggunakan bank lain selain BCA, ubah `assets.cash.bank.bca` menjadi `assets.cash.bank.mandiri`.
+
+- Mulai Mencatat: Gunakan bagan akun yang sudah Anda sesuaikan ini untuk mulai mencatat transaksi harian Anda di Jurnal Umum [lihat panduan Quickstart](/get-started/quickstart).
+
+<Warning>Praktik Terbaik: Jangan membuat terlalu banyak akun di awal. Mulailah dengan yang esensial, Anda selalu bisa menambahkannya nanti.</Warning>
+
+## MIGRASI DARI SISTEM LAMA
+
+Memindahkan data dari sistem yang sudah ada memerlukan perencanaan yang cermat untuk memastikan tidak ada data yang hilang.
+
+### Langkah 1: Pemetaan Akun
+Buat "kamus" yang menerjemahkan setiap akun lama ke format standar yang baru. Gunakan spreadsheet untuk mempermudah proses ini.
+
+| Akun Lama (Nama) | Kode Akun Lama | Path Akun Baru (Standar) | Catatan |
+| --- | --- | --- | --- |
+| `Biaya Iklan Facebook` | 601-05 | `expenses.operational.marketing.facebook_ads` | Gabungkan semua biaya media sosial |
+| `Bank Mandiri IDR` | 101-02 | `assets.cash.bank.mandiri.idr` | Tambahkan sufiks mata uang |
+| `Hutang PPN` | 205-01 | `liabilities.tax.payable.ppn` | Sesuai standar |
+
+
+### Langkah 2: Proses Migrasi Data
+
+- **Tentukan Tanggal Transisi**: Pilih tanggal pasti kapan Anda akan beralih sistem (misalnya, 1 Januari 2026).
+
+- **Ekspor Neraca Saldo**: Tepat pada tanggal transisi, ekspor data neraca saldo (trial balance) dari sistem lama Anda.
+
+- **Impor Saldo Awal**: Masukkan saldo tersebut ke sistem baru sebagai satu jurnal umum dengan keterangan "Saldo Awal Migrasi per 1 Januari 2026", menggunakan Path Akun Standar yang sudah Anda petakan.
+
+### Langkah 3: Validasi
+
+- Pastikan Saldo Seimbang: Bandingkan total debit dan kredit di neraca saldo sistem baru dengan sistem lama. Angkanya harus sama persis.
+
+- Arsipkan Sistem Lama: Setelah valid, ubah sistem lama menjadi mode hanya-baca (read-only) untuk kebutuhan arsip di masa depan.
+
+<Note>Tips Penting: Simpan kode akun lama di kolom metadata atau catatan pada akun baru. Ini akan sangat membantu saat proses audit.</Note>
