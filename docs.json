@@ -34,7 +34,6 @@
               "essentials/reusable-snippets"
             ]
           },
-
           {
             "group": "Pendahuluan",
             "pages": [
@@ -94,6 +93,11 @@
     "socials": {
       "x": "https://x.com/lesssummerize",
       "telegram": "https://t.me/diskusipajak"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-QW1V7VH19X"
     }
   }
 }
