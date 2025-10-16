@@ -1,0 +1,292 @@
+---
+title: Properti
+description: Daftar path akun khusus untuk industri penjualan dan penyewaan properti, mencakup aspek akuntansi proyek, kepemilikan aset, serta perlakuan pajak final.
+date: 2025-10-15
+---
+
+# Rekening Semantik Khusus: Industri Properti
+
+## 1. Pendahuluan
+
+Rekening Semantik Khusus untuk industri **properti** dirancang untuk entitas yang bergerak dalam:
+- penjualan properti (rumah, ruko, apartemen),
+- penjualan tanah kavling, dan
+- penyewaan properti (hunian, gedung, ruang kantor).
+
+Struktur ini menggabungkan elemen akuntansi proyek, kepemilikan aset tetap, dan perlakuan pajak final sebagaimana diatur dalam **Peraturan Pemerintah Nomor 34 Tahun 2016** (PPh Final atas pengalihan hak atas tanah dan bangunan) serta ketentuan **PPN atas penyerahan BKP tertentu**.
+
+Struktur penamaan mengikuti pola:
+```
+
+[rekening].[kategori].[subkategori].[detail].[spesifik]
+
+```
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+Gunakan path umum:
+```
+
+assets.cash.bank.bca
+assets.cash.bank.mandiri
+
+```
+
+### 2.2 Persediaan Properti (Inventori Real Estat)
+```
+
+assets.inventory.property.land_bank
+assets.inventory.property.development_in_progress
+assets.inventory.property.house_unit
+assets.inventory.property.apartment_unit
+assets.inventory.property.commercial_unit
+
+```
+
+> **Keterangan:**  
+> Akun ini mencatat properti yang masih dalam tahap pengembangan atau siap dijual.  
+> Merupakan **aset lancar**, bukan aset tetap, sampai transaksi penjualan terjadi.
+
+### 2.3 Piutang dan Uang Muka Pembeli
+```
+
+assets.receivable.customer.property
+assets.receivable.customer.installment
+assets.advance.received_from_buyer
+
+```
+
+### 2.4 Aset Investasi (Properti Disewakan)
+```
+
+assets.investment.property.building
+assets.investment.property.land
+assets.investment.property.equipment
+
+```
+
+> **Catatan:**  
+> Properti yang dimiliki untuk tujuan sewa jangka panjang dikategorikan sebagai **Aset Investasi**.
+
+### 2.5 Aset Pajak dan Lain-lain
+```
+
+assets.prepaid.tax.pph_final_property
+assets.prepaid.vat.property_construction
+assets.security.deposit.tenant
+assets.deferred.tax_asset
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Uang Muka dan Dana Pembeli
+```
+
+liabilities.advance.from_customer
+liabilities.advance.booking_fee
+liabilities.advance.installment
+
+```
+
+### 3.2 Kewajiban Pajak
+```
+
+liabilities.tax.payable.pph_final_property
+liabilities.tax.payable.vat_out
+liabilities.tax.withheld.buyer
+
+```
+
+### 3.3 Kewajiban Lain-lain
+```
+
+liabilities.deposit.received.tenant
+liabilities.unearned.income.rent
+
+```
+
+> **Penjelasan:**  
+> `liabilities.unearned.income.rent` digunakan untuk mencatat pendapatan sewa yang diterima di muka sebelum periode manfaat berjalan.
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan struktur umum:
+```
+
+equity.capital.owner.udin_baut
+equity.capital.owner.amat_bokir
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Penjualan Properti (PPh Final PP 34/2016)
+```
+
+income.sales.property.residential.final
+income.sales.property.commercial.final
+income.sales.property.apartment.final
+income.sales.property.land_plot.final
+income.sales.property.other.final
+
+```
+
+> **Penjelasan:**  
+> Berdasarkan **PP No. 34 Tahun 2016**, penjualan atau pengalihan hak atas tanah dan/atau bangunan dikenakan **PPh Final sebesar 2,5% dari nilai bruto**.  
+> Pendapatan ini bersifat **final**, tidak diakui dalam laba kena pajak reguler.
+
+### 5.2 Pendapatan Sewa Properti
+```
+
+income.rental.property.building.final
+income.rental.property.land.final
+income.rental.property.office.final
+income.rental.property.apartment.final
+
+```
+
+> **Penjelasan:**  
+> Pendapatan sewa properti juga tergolong **objek PPh Final**, dengan tarif 10% dari bruto, sesuai **PP No. 34 Tahun 2017**, serta terutang **PPN 12%** dengan DPP 11% untuk non mewah atas jasa sewa gedung/bangunan komersial.
+
+### 5.3 Pendapatan Lainnya
+```
+
+income.other.service_maintenance.non_final
+income.other.parking.non_final
+income.other.late_payment_fee.non_final
+
+```
+
+> **Keterangan:**  
+> Pendapatan non-final digunakan untuk aktivitas penunjang seperti jasa pengelolaan, parkir, atau denda keterlambatan yang bukan merupakan objek pajak final.
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Pengembangan Properti
+```
+
+expenses.development.land_acquisition.non_deductible
+expenses.development.construction_cost.non_deductible
+expenses.development.infrastructure.non_deductible
+expenses.development.consultant_fee.non_deductible
+expenses.development.permit_legal.non_deductible
+expenses.development.marketing_cost.non_deductible
+
+```
+
+### 6.2 Beban Operasional dan Pemeliharaan
+```
+
+expenses.property.maintenance.cleaning.non_deductible
+expenses.property.maintenance.security.non_deductible
+expenses.property.maintenance.utilities.non_deductible
+expenses.property.management.staff_salary.non_deductible
+expenses.property.management.travel.non_deductible
+
+```
+
+### 6.3 Beban Pajak Final Properti
+```
+
+expenses.tax.pph_final_property.final
+expenses.tax.vat.property_sales.non_deductible
+expenses.tax.vat.property_rental.non_deductible
+
+```
+
+> **Catatan:**  
+> Beban `expenses.tax.pph_final_property.final` mencatat PPh Final atas penghasilan penjualan tanah dan bangunan.  
+> PPN tetap dapat dikreditkan sesuai mekanisme umum jika berlaku.
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.property.inventory_to_cogs
+adjustments.property.revaluation
+adjustments.property.depreciation
+adjustments.property.vat_reclassification
+
+```
+
+> Digunakan untuk penyesuaian nilai persediaan, reklasifikasi aset, atau pencatatan depresiasi dan PPN keluaran.
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.property.discount_sales
+other.property.penalty_buyer
+other.property.bonus_agent
+
+```
+
+> Akun tambahan digunakan untuk insentif penjualan atau penalti pembatalan transaksi.
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+| Rekening Umum | Rekening Properti |
+| :-- | :-- |
+| `income.sales.product.retail.non_final` | `income.sales.property.residential.final` |
+| `assets.inventory.goods_for_sale` | `assets.inventory.property.development_in_progress` |
+| `liabilities.unearned.income.subscription` | `liabilities.unearned.income.rent` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Penjualan rumah tunai | `assets.cash.bank.bca` | `income.real_estate.sales.residential.final` |
+| Penjualan tanah kavling | `assets.receivable.customer.real_estate` | `income.real_estate.sales.land_plot.final` |
+| Pembayaran PPh Final | `expenses.tax.pph_final_real_estate.final` | `liabilities.tax.payable.pph_final_real_estate` |
+| Penerimaan sewa gedung | `assets.cash.bank.mandiri` | `income.real_estate.rental.building.final` |
+| PPN atas sewa gedung | `expenses.tax.vat.real_estate_rental.non_deductible` | `liabilities.tax.payable.vat_output` |
+| Pemindahan persediaan ke HPP | `adjustments.real_estate.inventory_to_cogs` | `assets.inventory.real_estate.house_unit` |
+
+---
+
+## 11. Prinsip Umum Rekening Properti
+
+1. **Dualitas Aset:**  
+   Properti dapat berperan sebagai *persediaan* (untuk dijual) atau *aset investasi* (untuk disewakan).  
+   Penentuan kategori menentukan perlakuan akuntansi dan pajak.
+
+2. **Perlakuan Pajak Final:**  
+   Penjualan dan sewa properti merupakan **objek PPh Final**, tidak dikreditkan terhadap PPh tahunan.
+
+3. **Pengakuan Pendapatan:**  
+   Pendapatan penjualan properti diakui saat pengalihan hak (akta jual beli/serah terima), bukan saat pembangunan.
+
+4. **Transparansi Fiskal:**  
+   Tag `.final` dan `.non_final` memudahkan sistem untuk membedakan pelaporan PPh dan PPN.
+
+5. **Konsistensi Struktur:**  
+   Menggunakan pola path `[rekening].[kategori].[subkategori].[detail].[spesifik]` yang konsisten dengan standar Less Summer.
+
+---
+
+## 12. Kesimpulan
+
+Rekening Semantik Properti memberikan struktur komprehensif untuk akuntansi penjualan dan penyewaan properti di Indonesia, dengan kepatuhan terhadap **PP No. 34 Tahun 2016** dan ketentuan **PPN atas penyerahan bangunan atau jasa sewa**.
+
+Struktur ini menjamin:
+- konsistensi antara laporan keuangan dan pelaporan pajak,
+- keterbacaan semantik lintas sistem, dan
+- kemudahan otomatisasi penjurnalan untuk transaksi properti.

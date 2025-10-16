@@ -1,34 +1,176 @@
 ---
-title: "Akun Ekuitas"
-description: "Mencakup modal pemilik, laba ditahan, dan penyesuaian ekuitas lainnya."
+title: Ekuitas
+description: Penjelasan formal mengenai akun Ekuitas dalam Standar Penamaan Akun Less Summer, mencakup definisi, karakteristik, struktur path, contoh transaksi, dan keterkaitannya dengan elemen akuntansi lain.
 mode: "wide"
 ---
 
-| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
-| :--- | :--- | :--- | :--- | :--- |
-| 3.1.1 | Modal Disetor | `equity.paid_in.capital` | Kredit | Investasi dari pendiri |
-| 3.2.1 | Laba Ditahan | `equity.retained_earnings` | Kredit | Akumulasi laba/rugi |
-| 3.3.1 | Dividen Diumumkan | `equity.dividend.declared` | Kredit | Pengumuman dividen |
+# Ekuitas (Equity)
 
-#### Contoh: Setoran Modal
+## 1. Definisi
 
-```json
-{
-  "date": "2025-01-01",
-  "description": "Setoran modal awal dari pendiri",
-  "entries": [
-    {
-      "account": "assets.cash.bank.bca",
-      "debit": 50000000,
-      "credit": 0
-    },
-    {
-      "account": "equity.paid_in.capital",
-      "debit": 0,
-      "credit": 50000000
-    }
-  ]
-}
+**Ekuitas (Equity)** adalah hak residual atas aset entitas setelah dikurangi seluruh liabilitasnya.  
+Dengan kata lain, ekuitas mencerminkan kepemilikan pemilik atau pemegang saham terhadap aset bersih perusahaan.  
+Ekuitas merupakan **akun real (permanent account)**, bersaldo **kredit**, dan posisinya terdapat di sisi kanan neraca.
+
+Dalam kerangka akuntansi keuangan, ekuitas berfungsi menunjukkan **sumber pendanaan internal** yang berasal dari investasi pemilik serta hasil akumulasi laba yang belum dibagikan.
+
+---
+
+## 2. Ciri-Ciri Akun Ekuitas
+
+| Karakteristik | Penjelasan |
+| :-- | :-- |
+| **Jenis Akun** | Real (Permanent Account) |
+| **Saldo Normal** | Kredit |
+| **Posisi Laporan Keuangan** | Neraca (Statement of Financial Position) |
+| **Bertambah Ketika** | Terjadi setoran modal, laba ditahan meningkat, atau keuntungan diakui |
+| **Berkurang Ketika** | Terjadi pembagian dividen, rugi tahun berjalan, atau penarikan modal |
+| **Tujuan Pengukuran** | Menunjukkan hak kepemilikan terhadap entitas |
+| **Contoh Umum** | Modal Pemilik, Laba Ditahan, Dividen, Selisih Penilaian Aset, Cadangan Revaluasi |
+
+---
+
+## 3. Struktur Path Akun Ekuitas
+
+Standar *Less Summer* menggunakan format:
+
 ```
 
-<Tip>Tips: Untuk melacak penyesuaian seperti surplus revaluasi, gunakan sufiks yang jelas, misalnya `equity.other_comprehensive.revaluation`, agar mudah diidentifikasi.</Tip>
+equity.[kategori].[subkategori].[detail].[spesifik]
+
+```
+
+Format ini memungkinkan representasi yang sistematis dan transparan dari seluruh komponen ekuitas, baik untuk entitas perorangan maupun badan usaha.
+
+### 3.1 Kategori Utama Ekuitas
+
+| Kategori | Deskripsi | Contoh Path |
+| :-- | :-- | :-- |
+| **capital** | Modal disetor oleh pemilik atau pemegang saham | `equity.capital.owner.individual` |
+| **retained_earnings** | Akumulasi laba bersih yang belum dibagikan | `equity.retained_earnings.current_year` |
+| **dividend** | Pembagian laba kepada pemegang saham | `equity.dividend.cash_distribution` |
+| **revaluation** | Kenaikan nilai aset tetap akibat revaluasi | `equity.revaluation.surplus.building` |
+| **adjustment** | Koreksi atau penyesuaian ekuitas lainnya | `equity.adjustment.forex_translation` |
+| **reserve** | Cadangan laba yang dialokasikan secara khusus | `equity.reserve.legal` |
+
+---
+
+### 3.2 Contoh Path Akun Ekuitas Lengkap
+
+```
+
+equity.capital.owner.individual
+equity.capital.share.common
+equity.capital.share.preferred
+equity.retained_earnings.prior_year
+equity.retained_earnings.current_year
+equity.dividend.cash_distribution
+equity.revaluation.surplus.building
+equity.adjustment.forex_translation
+equity.reserve.legal
+
+```
+
+Setiap path mendeskripsikan jenis dan sumber ekuitas dengan jelas.  
+Contoh:
+> `equity.retained_earnings.current_year` → Akumulasi laba bersih tahun berjalan yang belum ditransfer ke laba ditahan permanen.
+
+---
+
+## 4. Contoh Transaksi
+
+### 4.1 Setoran Modal Pemilik
+> Pemilik menyetorkan modal tunai sebesar Rp100.000.000 ke dalam perusahaan.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-05 | Kas di Bank BCA | `assets.cash.bank.bca` | 100.000.000 | |
+| 2025-10-05 | Modal Pemilik | `equity.capital.owner.individual` | | 100.000.000 |
+
+---
+
+### 4.2 Pengakuan Laba Tahun Berjalan
+> Perusahaan mencatat laba bersih Rp50.000.000 pada akhir tahun.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-12-31 | Ikhtisar Laba Rugi | `income.summary` | 50.000.000 | |
+| 2025-12-31 | Laba Ditahan Tahun Berjalan | `equity.retained_earnings.current_year` | | 50.000.000 |
+
+---
+
+### 4.3 Pembagian Dividen
+> Pembayaran dividen tunai sebesar Rp20.000.000 kepada pemegang saham.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2026-01-10 | Dividen Tunai | `equity.dividend.cash_distribution` | 20.000.000 | |
+| 2026-01-10 | Kas di Bank Mandiri | `assets.cash.bank.mandiri` | | 20.000.000 |
+
+---
+
+## 5. Relasi dengan Jenis Akun Lain
+
+| Relasi | Hubungan yang Terjadi |
+| :-- | :-- |
+| **Aset** | Ekuitas meningkat ketika aset bertambah melalui investasi atau laba. |
+| **Liabilitas** | Ekuitas berkurang saat kewajiban meningkat tanpa tambahan aset. |
+| **Pendapatan (Income)** | Laba dari pendapatan akan menambah saldo ekuitas (melalui laba ditahan). |
+| **Beban (Expenses)** | Beban menurunkan laba bersih dan secara tidak langsung mengurangi ekuitas. |
+
+Ekuitas berfungsi sebagai **penyeimbang alami** antara aset dan liabilitas — menjaga kesetaraan fundamental dalam persamaan akuntansi:
+> **Aset = Liabilitas + Ekuitas**
+
+---
+
+## 6. Catatan Tambahan
+
+### 6.1 Akun Modal dan Investasi
+- Akun modal disetor (`equity.capital.owner.individual`) digunakan untuk entitas perorangan.  
+- Untuk perseroan terbatas, digunakan akun berbasis saham:  
+  `equity.capital.share.common` dan `equity.capital.share.preferred`.
+
+### 6.2 Laba Ditahan dan Distribusi
+- Akun laba ditahan dipisahkan antara tahun berjalan dan tahun sebelumnya untuk menjaga jejak historis laba.  
+- Pembagian dividen dicatat melalui path `equity.dividend.cash_distribution`, yang mencerminkan pengalihan laba dari laba ditahan kepada pemegang saham atau pemilik modal.
+
+> Catatan: Berdasarkan ketentuan perpajakan yang berlaku (UU HPP dan PMK No. 18/PMK.03/2021), dividen yang diterima oleh wajib pajak dalam negeri **tidak lagi dikenakan pajak penghasilan**, sepanjang diinvestasikan kembali di wilayah Indonesia.  
+> Oleh karena itu, akun dividen dalam konteks *Standar Penamaan Akun Less Summer* **tidak perlu diberi label pajak final**.
+
+### 6.3 Cadangan dan Penyesuaian
+Cadangan (reserve) atau surplus revaluasi aset digunakan sesuai ketentuan PSAK 16 dan PSAK 1, serta berfungsi meningkatkan transparansi laporan posisi keuangan.
+
+Contoh:
+
+```
+
+equity.revaluation.surplus.land
+equity.reserve.legal
+equity.adjustment.forex_translation
+
+```
+
+### 6.4 Integrasi Sistem dan Pelaporan
+Struktur path ekuitas memudahkan pelacakan otomatis perubahan modal dan laba ditahan antarperiode.  
+ERP dan sistem pelaporan keuangan dapat mengidentifikasi transaksi-perubahan ekuitas secara semantik, tanpa perlu memetakan kode numerik.
+
+---
+
+## 7. Kesimpulan
+
+Ekuitas menggambarkan **nilai kepemilikan bersih** dari suatu entitas — hasil interaksi dinamis antara aset, liabilitas, pendapatan, dan beban.  
+Sebagai akun real (permanent), ekuitas mencerminkan posisi keuangan yang berkelanjutan dan menjadi indikator utama stabilitas finansial.
+
+Struktur path seperti:
+
+```
+
+equity.capital.owner.individual
+equity.retained_earnings.current_year
+equity.dividend.cash_distribution
+
+```
+
+menjadikan setiap komponen ekuitas **terbaca secara semantik**, transparan dalam pelaporan, dan mudah diintegrasikan dengan sistem ERP, pelaporan pajak, maupun dashboard analitik.
+
+Dengan pendekatan ini, *Standar Penamaan Akun Less Summer* tidak hanya menciptakan bagan akun yang rapi, tetapi juga menyematkan **struktur logis dan kepatuhan akuntansi** ke dalam representasi data keuangan — menjadikan ekuitas bukan sekadar saldo akhir, melainkan cerminan langsung dari perjalanan nilai perusahaan.

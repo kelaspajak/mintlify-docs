@@ -1,0 +1,338 @@
+---
+title: Rekening Semantik - Core
+description: Daftar lengkap path akun standar umum yang digunakan di semua jenis usaha dalam sistem Rekening Semantik Less Summer.
+mode: "wide"
+---
+
+# Rekening Semantik Umum
+
+## 1. Pendahuluan
+
+Rekening Semantik Umum merupakan struktur path akun yang bersifat **universal**, dapat digunakan oleh seluruh jenis usaha, dan berfungsi sebagai fondasi utama sistem Rekening Semantik Less Summer.
+
+Setiap akun ditulis secara **deskriptif dan hierarkis**, dengan struktur:
+
+```markdown
+
+[rekening].[kategori].[subkategori].[detail].[spesifik]
+
+```
+
+Struktur ini memudahkan integrasi lintas sistem — laporan keuangan, pajak, maupun analitik.
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+```markdown
+
+assets.cash.on_hand
+assets.cash.bank.bca
+assets.cash.bank.mandiri
+assets.cash.bank.bni
+assets.cash.bank.bri
+assets.cash.digital.qris
+assets.cash.digital.gopay
+assets.cash.digital.ovo
+
+```
+
+### 2.2 Piutang
+```markdown
+
+assets.receivable.customer
+assets.receivable.employee
+assets.receivable.other
+assets.receivable.intercompany
+assets.receivable.tax.refund
+
+```
+
+### 2.3 Persediaan
+```markdown
+
+assets.inventory.raw_materials
+assets.inventory.goods_for_sale
+assets.inventory.spare_parts
+assets.inventory.supplies.office
+assets.inventory.consumables
+
+```
+
+### 2.4 Aset Tetap
+```markdown
+
+assets.fixed.equipment.laptop
+assets.fixed.equipment.vehicle
+assets.fixed.equipment.machinery
+assets.fixed.property.building
+assets.fixed.property.land
+assets.fixed.furniture.office
+assets.fixed.accumulated_depreciation
+
+```
+
+### 2.5 Aset Lain-lain
+```markdown
+
+assets.prepaid.insurance
+assets.prepaid.rent
+assets.security.deposit
+assets.investment.short_term
+assets.investment.long_term
+assets.deferred.tax_asset
+
+```
+
+### 2.6 Pajak Dibayar Dimuka
+```markdown
+
+assets.prepaid.tax.pph21
+assets.prepaid.tax.pph23
+assets.prepaid.tax.pph25
+assets.prepaid.tax.vat
+
+```
+
+> **Penjelasan:**  
+> Akun ini digunakan untuk mencatat pajak yang telah disetor atau dipotong tetapi belum diakui sebagai beban atau pengurang pajak terutang.  
+> Termasuk PPh Pasal 25, PPh Pasal 23, dan PPN Masukan yang akan dikreditkan pada masa pajak berikutnya.
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Usaha dan Akrual
+```markdown
+
+liabilities.payable.vendor.short_term
+liabilities.payable.vendor.long_term
+liabilities.accrued.utilities
+liabilities.accrued.payroll
+liabilities.accrued.expense
+
+```
+
+### 3.2 Utang Pajak
+```markdown
+
+liabilities.tax.payable.vat
+liabilities.tax.payable.pph21
+liabilities.tax.payable.pph23
+liabilities.tax.payable.pph25
+liabilities.tax.payable.ppn_output
+liabilities.tax.unearned.income
+
+```
+
+### 3.3 Pinjaman dan Pembiayaan
+```markdown
+
+liabilities.loan.bank.short_term
+liabilities.loan.bank.long_term
+liabilities.loan.other
+liabilities.lease.obligation
+
+```
+
+### 3.4 Kewajiban Lainnya
+```markdown
+
+liabilities.unearned.income.subscription
+liabilities.unearned.income.rent
+liabilities.other.deferred_revenue
+liabilities.other.deposit_received
+
+```
+
+---
+
+## 4. Ekuitas (Equity)
+
+```markdown
+
+equity.capital.owner.individual
+equity.capital.share.common
+equity.capital.share.preferred
+equity.additional_paid_in_capital
+equity.retained_earnings.current_year
+equity.retained_earnings.previous_year
+equity.dividend.cash_distribution
+equity.reserve.legal
+equity.revaluation.surplus.land
+equity.adjustment.forex_translation
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Pendapatan Utama
+```markdown
+
+income.sales.product.retail.non_final
+income.sales.product.wholesale.non_final
+income.service.consulting.non_final
+income.service.training.non_final
+income.service.maintenance.non_final
+
+```
+
+### 5.2 Pendapatan Lainnya
+```markdown
+
+income.rental.property.final
+income.interest.deposit.final
+income.commission.agent.non_final
+income.other.gain_on_sale_asset.non_final
+income.other.forex_gain.non_final
+
+```
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Operasional
+```markdown
+
+expenses.operational.payroll.salary.deductible
+expenses.operational.payroll.overtime.deductible
+expenses.operational.utilities.electricity.deductible
+expenses.operational.utilities.water.deductible
+expenses.operational.office_supplies.deductible
+expenses.operational.repair.maintenance.deductible
+expenses.operational.transportation.deductible
+expenses.operational.travel.deductible
+
+```
+
+### 6.2 Beban Administrasi
+```markdown
+
+expenses.administrative.telecommunication.deductible
+expenses.administrative.stationery.deductible
+expenses.administrative.software.subscription.deductible
+expenses.administrative.legal_service.deductible
+expenses.administrative.professional_fee.deductible
+
+```
+
+### 6.3 Beban Pemasaran
+```markdown
+
+expenses.marketing.advertising.digital.deductible
+expenses.marketing.advertising.print.deductible
+expenses.marketing.event.sponsorship.deductible
+expenses.marketing.entertainment.non_deductible
+
+```
+
+### 6.4 Beban Keuangan
+```markdown
+
+expenses.financial.interest.loan.deductible
+expenses.financial.bank_fees.deductible
+expenses.financial.exchange_loss.deductible
+
+```
+
+### 6.5 Beban Pajak
+```markdown
+
+expenses.tax.penalty.non_deductible
+expenses.tax.consultation_fee.deductible
+expenses.tax.withholding_error.non_deductible
+
+```
+
+### 6.6 Beban Penyusutan dan Amortisasi
+```markdown
+
+expenses.depreciation.equipment.laptop.deductible
+expenses.depreciation.property.building.deductible
+expenses.amortization.intangible.software.deductible
+
+```
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+
+```markdown
+
+adjustments.depreciation.journal_entry
+adjustments.prepaid_expense.amortization
+adjustments.accrued_expense.recording
+adjustments.inventory_count_adjustment
+adjustments.error_correction.reversal
+
+```
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+
+```markdown
+
+other.income.unrealized_gain
+other.expense.unrealized_loss
+other.suspense.pending_identification
+other.rounding.adjustment
+
+```
+
+---
+
+## 9. Total Jumlah Path (≈75+)
+
+Terdapat lebih dari **75 path akun umum** yang mencakup semua elemen dasar akuntansi.  
+Struktur ini dapat digunakan sebagai *core account list* di:
+- ERP dan software akuntansi internal,  
+- laporan keuangan PSAK,  
+- laporan pajak (PPh & PPN), serta  
+- sistem analitik bisnis dan pelaporan BI.
+
+---
+
+## 10. Prinsip Umum Rekening Semantik
+
+1. **Konsistensi Penamaan**  
+   Gunakan pola `[rekening].[kategori].[subkategori].[detail].[spesifik]` secara ketat.  
+
+2. **Deskriptif dan Hierarkis**  
+   Setiap segmen menjelaskan fungsi akun dan dapat diurai hingga level granular.
+
+3. **Tag Fiskal**  
+   Gunakan `.final`, `.non_final`, `.deductible`, `.non_deductible` untuk mempermudah pelaporan pajak.
+
+4. **Modular dan Skalabel**  
+   Dapat diperluas untuk domain industri tertentu tanpa mengubah struktur inti.
+
+5. **Keterhubungan Lintas Sistem**  
+   Setiap path dapat langsung dipetakan ke laporan keuangan, pajak, maupun API akuntansi.
+
+---
+
+## 11. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Penjualan tunai | `assets.cash.bank.bca` | `income.sales.product.retail.non_final` |
+| Pembayaran gaji | `expenses.operational.payroll.salary.deductible` | `assets.cash.bank.bca` |
+| Pembayaran listrik | `expenses.operational.utilities.electricity.deductible` | `assets.cash.bank.mandiri` |
+| Pembayaran PPh 25 | `assets.prepaid.tax.pph25` | `assets.cash.bank.bca` |
+| Pengakuan PPh 25 sebagai kredit pajak | `liabilities.tax.payable.pph25` | `assets.prepaid.tax.pph25` |
+| Penyusutan laptop | `expenses.depreciation.equipment.laptop.deductible` | `assets.fixed.accumulated_depreciation` |
+
+---
+
+## 12. Kesimpulan
+
+Rekening Semantik Umum adalah **inti dari sistem akuntansi modern** Less Summer — menggabungkan kejelasan semantik, konsistensi, dan kepatuhan fiskal.  
+Struktur ini dapat menjadi *lingua franca* bagi laporan keuangan, pajak, dan analitik lintas sistem tanpa memerlukan interpretasi tambahan.
+
+> Semua rekening khusus industri (misalnya konstruksi, properti, atau digital) akan dikembangkan di atas standar umum ini,  
+> memastikan kompatibilitas penuh dan keterbacaan universal.

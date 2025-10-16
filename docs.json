@@ -15,7 +15,7 @@
   },
   "styling": {
     "codeblocks": {
-      "theme": "dracula"
+      "theme": "github-light"
     }
   },
   "favicon": "/favicon.ico",
@@ -36,6 +36,7 @@
           },
           {
             "group": "Pendahuluan",
+            "icon": "rocket",
             "pages": [
               "get-started/welcome",
               "get-started/quickstart",
@@ -45,6 +46,7 @@
           },
           {
             "group": "Kategori Akun",
+            "icon": "book",
             "pages": [
               "account-categories/assets",
               "account-categories/liabilities",
@@ -54,14 +56,13 @@
             ]
           },
           {
-            "group": "Implementasi",
-            "hidden": true,
+            "group": "Set Rekening",
+            "icon": "wallet",
             "pages": [
-              "implementation/introduction",
-              "implementation/starting-from-scratch",
-              "implementation/migration",
-              "implementation/customization",
-              "implementation/maintenance"
+              "set-rekening/core",
+              "set-rekening/konstruksi",
+              "set-rekening/real-estate",
+              "set-rekening/perdagangan"
             ]
           }
         ]

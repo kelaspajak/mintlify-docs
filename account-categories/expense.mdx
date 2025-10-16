@@ -1,47 +1,198 @@
 ---
-title: "Akun Beban"
-description: "Kategori untuk beban operasional, keuangan, dan beban terkait pajak."
-mode: "center"
+title: Beban
+description: Penjelasan formal mengenai akun Beban dalam Standar Penamaan Akun Less Summer, mencakup definisi, ciri khas, struktur path, klasifikasi fiskal (deductible dan non-deductible), serta contoh transaksi.
+date: 2025-10-15
+mode: "wide"
 ---
 
-| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
-| :--- | :--- | :--- | :--- | :--- |
-| 5.1.1 | Beban Gaji | `expenses.operational.payroll.salary` | Debit | Pembayaran gaji bulanan |
-| 5.1.2 | Beban BPJS Kesehatan | `expenses.operational.payroll.bpjs_kesehatan` | Debit | Iuran BPJS dari perusahaan |
-| 5.2.1 | Beban Pemasaran | `expenses.operational.marketing.instagram_ads` | Debit | Biaya kampanye iklan |
-| 5.3.1 | Beban Bunga | `expenses.financial.interest` | Debit | Pembayaran bunga pinjaman |
-| 5.4.1 | Beban Tak Dapat Dikurangkan | `expenses.tax.non_deductible.representasi` | Debit | Biaya representasi |
+# Beban (Expenses)
 
-#### Contoh: Pencatatan Gaji
+## 1. Definisi
 
-```json
-{
-  "date": "2025-06-30",
-  "description": "Pembayaran gaji bulan Juni",
-  "entries": [
-    {
-      "account": "expenses.operational.payroll.salary",
-      "debit": 15000000,
-      "credit": 0
-    },
-    {
-      "account": "expenses.operational.payroll.bpjs_kesehatan",
-      "debit": 500000,
-      "credit": 0
-    },
-    {
-      "account": "liabilities.payable.vendor",
-      "debit": 0,
-      "credit": 15500000,
-      "metadata": {
-        "vendor": "payroll_provider"
-      }
-    }
-  ]
-}
+**Beban (Expenses)** adalah penurunan manfaat ekonomi selama satu periode akuntansi dalam bentuk arus keluar atau penurunan aset, atau timbulnya liabilitas, yang mengakibatkan penurunan ekuitas, tidak terkait dengan distribusi kepada pemilik.  
+
+Beban merupakan **akun nominal (temporary account)**, yang berarti saldo akun ini **ditutup pada akhir periode** ke akun laba ditahan (`equity.retained_earnings.current_year`).  
+Akun ini bersaldo **debit**, dan dilaporkan dalam **laporan laba rugi (statement of profit or loss)**.
+
+---
+
+## 2. Ciri-Ciri Akun Beban
+
+| Karakteristik | Penjelasan |
+| :-- | :-- |
+| **Jenis Akun** | Nominal (Temporary Account) |
+| **Saldo Normal** | Debit |
+| **Posisi Laporan Keuangan** | Laporan Laba Rugi |
+| **Bertambah Ketika** | Entitas mengeluarkan biaya atau menggunakan sumber daya ekonomi untuk operasi |
+| **Berkurang Ketika** | Terjadi koreksi atau pengembalian biaya |
+| **Tujuan Pengukuran** | Menggambarkan konsumsi sumber daya ekonomi untuk memperoleh pendapatan |
+| **Contoh Umum** | Beban Gaji, Beban Sewa, Beban Pajak, Beban Listrik, Beban Penyusutan |
+
+---
+
+## 3. Struktur Path Akun Beban
+
+Struktur penamaan akun beban mengikuti pola hierarkis:
 
 ```
 
-<Tip>
-Tips Pajak: Tandai beban yang tidak dapat menjadi pengurang pajak (non-deductible) dengan sufiks `.non_deductible` atau `.nd` agar dapat dikecualikan secara otomatis saat pelaporan.
-</Tip>
+expenses.[kategori].[subkategori].[detail].[spesifik]
+
+```
+
+Untuk keperluan perpajakan dan analisis fiskal, *Less Summer Standard* menambahkan **tag khusus** di bagian `[spesifik]`:
+
+- `.deductible` → beban yang **dapat dikurangkan secara fiskal** (diakui sebagai pengurang penghasilan bruto).  
+- `.non_deductible` → beban yang **tidak dapat dikurangkan secara fiskal** (dikecualikan dalam penghitungan PKP).
+
+---
+
+### 3.1 Kategori Utama Beban
+
+| Kategori | Deskripsi | Contoh Path |
+| :-- | :-- | :-- |
+| **operational** | Beban operasional langsung yang mendukung aktivitas utama | `expenses.operational.payroll.salary.deductible` |
+| **administrative** | Beban umum dan administrasi | `expenses.administrative.office_supplies.deductible` |
+| **marketing** | Beban promosi, iklan, dan pemasaran | `expenses.marketing.digital_ads.deductible` |
+| **financial** | Beban bunga, biaya bank, dan pembiayaan | `expenses.financial.interest.deductible` |
+| **tax** | Beban pajak, denda, atau penalti | `expenses.tax.penalty.non_deductible` |
+| **depreciation** | Beban penyusutan aset tetap | `expenses.depreciation.equipment.laptop.deductible` |
+| **other** | Beban lain-lain yang tidak termasuk kategori di atas | `expenses.other.entertainment.non_deductible` |
+
+---
+
+### 3.2 Contoh Path Akun Beban Lengkap
+
+```
+
+expenses.operational.payroll.salary.deductible
+expenses.operational.utilities.electricity.deductible
+expenses.administrative.office_supplies.deductible
+expenses.marketing.digital_ads.deductible
+expenses.financial.interest.loan.deductible
+expenses.tax.penalty.non_deductible
+expenses.depreciation.equipment.laptop.deductible
+expenses.other.entertainment.non_deductible
+
+```
+
+Path tersebut menunjukkan hierarki yang jelas antara fungsi biaya, jenis aktivitas, dan status fiskalnya.  
+Contoh:
+> `expenses.marketing.digital_ads.deductible` → Beban iklan digital yang dapat dikurangkan dari penghasilan bruto.
+
+---
+
+## 4. Klasifikasi Fiskal: Deductible vs Non-Deductible
+
+Untuk kepatuhan terhadap **UU PPh dan PMK No. 18/PMK.03/2021**, beban diklasifikasikan berdasarkan kelayakan pengurangannya terhadap penghasilan kena pajak.
+
+### 4.1 Beban Deductible (`.deductible`)
+Merupakan beban yang **dapat dikurangkan secara fiskal**, karena berhubungan langsung dengan kegiatan usaha untuk memperoleh, menagih, dan memelihara penghasilan.
+
+**Contoh:**
+- Gaji karyawan → `expenses.operational.payroll.salary.deductible`
+- Biaya listrik dan air → `expenses.operational.utilities.electricity.deductible`
+- Biaya iklan dan promosi → `expenses.marketing.digital_ads.deductible`
+
+### 4.2 Beban Non-Deductible (`.non_deductible`)
+Merupakan beban yang **tidak dapat dikurangkan secara fiskal**, karena tidak berhubungan langsung dengan kegiatan usaha atau dilarang oleh peraturan perpajakan.
+
+**Contoh:**
+- Denda pajak → `expenses.tax.penalty.non_deductible`
+- Biaya representasi melebihi batas → `expenses.other.entertainment.non_deductible`
+- Pengeluaran pribadi pemilik → `expenses.other.personal_use.non_deductible`
+
+Penandaan `.deductible` dan `.non_deductible` memudahkan sistem analitik dan pelaporan pajak untuk **memisahkan beban fiskal dan non-fiskal secara otomatis**.
+
+---
+
+## 5. Contoh Transaksi
+
+### 5.1 Pembayaran Gaji Karyawan (Deductible)
+> Pembayaran gaji bulan Oktober sebesar Rp30.000.000 secara tunai.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-31 | Beban Gaji Karyawan | `expenses.operational.payroll.salary.deductible` | 30.000.000 | |
+| 2025-10-31 | Kas di Bank BCA | `assets.cash.bank.bca` | | 30.000.000 |
+
+---
+
+### 5.2 Pembayaran Denda Pajak (Non-Deductible)
+> Pembayaran denda keterlambatan setor PPh sebesar Rp500.000.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-25 | Denda Pajak | `expenses.tax.penalty.non_deductible` | 500.000 | |
+| 2025-10-25 | Kas di Bank Mandiri | `assets.cash.bank.mandiri` | | 500.000 |
+
+---
+
+## 6. Relasi dengan Jenis Akun Lain
+
+| Relasi | Hubungan yang Terjadi |
+| :-- | :-- |
+| **Aset** | Beban mengurangi aset, terutama kas dan setara kas. |
+| **Liabilitas** | Beban yang belum dibayar membentuk liabilitas akrual. |
+| **Pendapatan (Income)** | Beban dikurangkan dari pendapatan untuk menentukan laba bersih. |
+| **Ekuitas** | Beban menurunkan laba ditahan di akhir periode. |
+
+Dengan demikian, beban merupakan **elemen pengurang pendapatan** yang secara langsung memengaruhi hasil usaha dan posisi ekuitas.
+
+---
+
+## 7. Catatan Tambahan
+
+### 7.1 Beban Akrual
+Beban yang telah terjadi namun belum dibayar dicatat sebagai liabilitas:
+```
+
+liabilities.accrued.utilities
+liabilities.accrued.payroll
+
+```
+
+### 7.2 Beban Penyusutan
+Beban penyusutan diakui untuk mencerminkan alokasi manfaat aset tetap:
+```
+
+expenses.depreciation.equipment.laptop.deductible
+
+```
+Akun kontra yang berhubungan:
+```
+
+assets.fixed.equipment.accumulated_depreciation
+
+````
+
+### 7.3 Analitik dan Integrasi Sistem
+- Penambahan tag `.deductible` dan `.non_deductible` memungkinkan sistem pelaporan otomatis menghasilkan **rekonsiliasi fiskal** tanpa proses manual.  
+- Laporan dapat dikelompokkan berdasarkan fungsi (`operational`, `marketing`, `administrative`) atau status fiskal (`deductible`, `non_deductible`).
+
+Contoh query:
+```sql
+SELECT SUM(amount)
+FROM journal_entries
+WHERE account_path LIKE 'expenses.%.%.%.deductible';
+````
+
+→ Menghasilkan total beban yang dapat dikurangkan secara fiskal.
+
+---
+
+## 8. Kesimpulan
+
+Beban mencerminkan konsumsi sumber daya ekonomi dalam rangka menghasilkan pendapatan selama periode tertentu.
+Sebagai **akun nominal (temporary)**, beban berperan langsung dalam penghitungan laba rugi dan menutup siklus operasional akuntansi setiap akhir periode.
+
+Struktur path seperti:
+
+```
+expenses.operational.payroll.salary.deductible
+expenses.tax.penalty.non_deductible
+expenses.marketing.digital_ads.deductible
+```
+
+menciptakan sistem akuntansi yang **jelas, deskriptif, dan patuh fiskal**.
+Dengan penambahan tag `.deductible` dan `.non_deductible`, *Standar Penamaan Akun Less Summer* tidak hanya mencatat transaksi, tetapi juga menanamkan kecerdasan fiskal langsung ke dalam struktur data akuntansi — menjadikan laporan keuangan lebih transparan, efisien, dan siap otomatisasi penuh.

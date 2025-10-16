@@ -1,96 +1,183 @@
 ---
-title: "Struktur dan Sintaks"
-description: "Panduan lengkap untuk merancang dan menyusun hierarki akun yang logis, konsisten, dan mudah dibaca mesin."
+title: Struktur Elemen dan Contoh Akun
+description: Penjabaran lima elemen utama laporan keuangan beserta struktur akun dan contoh penerapan Standar Penamaan Akun yang deskriptif dan hierarkis.
+date: 2025-10-14
 ---
 
-"Standar Penamaan Akun" versi "Less Summer" menggunakan struktur hierarkis untuk mengelompokkan akun secara logis. Pendekatan ini membuat setiap akun menjadi jelas dan mudah dipahami, baik oleh manusia maupun mesin.
+# Struktur Elemen dan Contoh Akun
 
-### KATEGORI UTAMA
-Dasar dari hierarki ini adalah lima kategori utama yang mencerminkan laporan posisi keuangan (neraca) dan laporan laba rugi:
+## Pendahuluan
 
-- assets (Aset)
+Dalam kerangka akuntansi keuangan, **setiap akun merupakan representasi dari elemen laporan keuangan**.  
+Untuk memastikan konsistensi dan kejelasan lintas sistem, *Standar Penamaan Akun*ini  menata setiap akun berdasarkan **lima elemen fundamental** yang diakui secara universal
 
-- liabilities (Liabilitas)
+Kelima elemen tersebut—Aset, Liabilitas, Ekuitas, Pendapatan, dan Beban—menjadi kerangka dasar yang menopang seluruh struktur bagan akun.  
+Dokumen ini menjelaskan hubungan antara teori akuntansi dan penerapannya dalam sistem penamaan akun yang deskriptif dan hierarkis.
 
-- equity (Ekuitas)
+---
 
-- income (Pendapatan)
+## 1. Aset (*Assets*)
 
-- expenses (Beban)
+### Definisi dan Konsep
+Aset adalah sumber daya ekonomi yang **dikendalikan perusahaan** sebagai hasil dari peristiwa masa lalu, dan yang **diharapkan akan memberikan manfaat ekonomi di masa depan**.
 
-### POLA DAN SINTAKS UMUM
-Setiap akun dibentuk dengan mengikuti pola hierarkis yang dipisahkan oleh titik.
+Dalam literatur aset dibagi menjadi **lancar (current)** dan **tidak lancar (non-current)**, sedangkan sedangkan menekankan pentingnya *klasifikasi fungsional* — membedakan antara aset operasi dan non-operasi.
 
-Pola Umum:
-```[tipe].[kategori].[subkategori].[spesifik]```
+### Prinsip Penamaan
+Path akun untuk aset dimulai dengan prefiks `assets`, diikuti oleh klasifikasi ekonominya.
 
-### CONTOH PENERAPAN
-Berikut adalah contoh penerapan untuk setiap kategori utama dalam format tabel.
+### Contoh Struktur Hierarkis
 
-1. Aset (Assets)
+| Kode | Nama Akun | Path Akun | Saldo Normal | Keterangan |
+| :-- | :-- | :-- | :-- | :-- |
+| 1.1.1.1 | Kas Kecil | `assets.cash.petty_cash` | Debit | Kas tunai untuk kebutuhan operasional kecil. |
+| 1.1.2.1 | Bank BCA (IDR) | `assets.cash.bank.bca.idr` | Debit | Kas dalam rekening giro Rupiah di Bank BCA. |
+| 1.2.1.1 | Piutang Usaha | `assets.receivable.customer` | Debit | Piutang dari pelanggan atas penjualan kredit. |
+| 1.3.1.1 | PPN Masukan | `assets.tax.prepaid.ppn` | Debit | Pajak Pertambahan Nilai yang telah dibayar di muka. |
+| 1.4.1.1 | Laptop | `assets.fixed.equipment.laptop` | Debit | Aset tetap berupa peralatan kerja. |
+| 1.4.1.2 | Akumulasi Penyusutan Laptop | `assets.fixed.equipment.accumulated_depreciation.laptop` | Kredit | Akun kontra untuk penyusutan aset tetap. |
 
-| Kode | Nama Akun | Path | Saldo Normal |
-|---|---|---|---|
-| 1.1.1 | Kas | assets.cash | Debit |
-| 1.1.2 | Bank BCA | assets.cash.bank.bca | Debit |
-| 1.2.1 | Piutang Usaha | assets.receivable.customer | Debit |
-| 1.3.1 | PPN Dibayar di Muka | assets.tax.prepaid.ppn | Debit |
-| 1.4.1 | Aset Tetap - Laptop | assets.fixed.equipment.laptop | Debit |
+### Catatan
+Akun kontra seperti penyusutan dan cadangan kerugian piutang tetap dimasukkan ke dalam kelompok `assets`, tetapi menggunakan subkategori yang mencerminkan sifat pengurangannya (`accumulated_depreciation`, `allowance_for_doubtful_accounts`).
 
-2. Liabilitas (Liabilities)
-| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
-|-------|----------------------------|---------------------------------------|--------------|
-| 2.1.1 | Utang Usaha                | liabilities.payable.vendor            | Kredit       |
-| 2.1.2 | Utang PPN                  | liabilities.tax.payable.ppn           | Kredit       |
-| 2.1.3 | Utang PPh Pasal 23         | liabilities.tax.payable.pph23         | Kredit       |
-| 2.2.1 | Beban Akrual Gaji          | liabilities.accrued.payroll           | Kredit       |
+---
 
-3. Ekuitas (Equity)
-| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
-|-------|----------------------------|---------------------------------------|--------------|
-| 3.1.1 | Modal Disetor              | equity.paid_in.capital                | Kredit       |
-| 3.2.1 | Laba Ditahan               | equity.retained_earnings              | Kredit       |
+## 2. Liabilitas (*Liabilities*)
 
-4. Pendapatan (Income)
-| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
-|-------|----------------------------|---------------------------------------|--------------|
-| 4.1.1 | Penjualan Produk           | income.sales.product.digital          | Kredit       |
-| 4.1.2 | Pendapatan Jasa            | income.sales.service.consulting       | Kredit       |
-| 4.3.1 | Pendapatan Bunga           | income.financial.interest             | Kredit       |
+### Definisi dan Konsep
+Liabilitas adalah **kewajiban kini** perusahaan yang timbul akibat peristiwa masa lalu, yang penyelesaiannya diharapkan menyebabkan arus keluar sumber daya ekonomi.
 
-5. Beban (Expenses)
-| Kode  | Nama Akun                  | Path                                  | Saldo Normal |
-|-------|----------------------------|---------------------------------------|--------------|
-| 5.1.1 | Beban Gaji                 | expenses.operational.payroll.salary   | Debit        |
-| 5.2.1 | Beban Pemasaran (Iklan)    | expenses.operational.marketing.ads    | Debit        |
-| 5.3.1 | Beban Bunga                | expenses.financial.interest           | Debit        |
+Dalam kerangka, liabilitas dibagi menjadi **jangka pendek (current)** dan **jangka panjang (long-term)**.  
+Dalam sistem *ini*, pengelompokan dilakukan berdasarkan **fungsi dan sifat kewajiban** agar lebih relevan secara praktis.
 
-### ATURAN PENYUSUNAN
-Untuk menjaga konsistensi, ikuti aturan-aturan wajib berikut:
+### Prinsip Penamaan
+Path akun untuk liabilitas dimulai dengan prefiks `liabilities`, dan subkategorinya mencerminkan jenis utang atau kewajiban pajak.
 
-Gunakan Format Baku: Gunakan huruf kecil (lowercase) dengan segmen yang dipisahkan oleh titik (.).
+### Contoh Struktur Hierarkis
 
-Batasi Kedalaman: Usahakan kedalaman hierarki antara dua hingga lima level.
+| Kode | Nama Akun | Path Akun | Saldo Normal | Keterangan |
+| :-- | :-- | :-- | :-- | :-- |
+| 2.1.1.1 | Utang Usaha | `liabilities.payable.vendor` | Kredit | Kewajiban kepada pemasok atas pembelian barang/jasa. |
+| 2.2.1.1 | Utang PPN Keluaran | `liabilities.tax.payable.ppn` | Kredit | Pajak yang dipungut dari pelanggan dan harus disetor ke negara. |
+| 2.2.1.2 | Utang PPh Pasal 21 | `liabilities.tax.payable.pph21` | Kredit | Kewajiban pajak atas gaji karyawan. |
+| 2.2.1.3 | Utang PPh Pasal 23 | `liabilities.tax.payable.pph23` | Kredit | Kewajiban pajak atas jasa pihak ketiga. |
+| 2.3.1.1 | Beban Akrual Gaji | `liabilities.accrued.payroll` | Kredit | Gaji yang sudah menjadi beban namun belum dibayar. |
+| 2.4.1.1 | Utang Bank Jangka Pendek | `liabilities.short_term_loan.bank_x` | Kredit | Pinjaman bank dengan jatuh tempo kurang dari satu tahun. |
 
-Hindari Ambiguitas: Prioritaskan segmen yang deskriptif.
+### Catatan
+Pemisahan antara utang usaha, pajak, dan pinjaman memberikan fleksibilitas tinggi dalam pelaporan. Misalnya, seluruh akun di bawah `liabilities.tax.payable` dapat langsung digunakan untuk menyusun laporan SPT Masa tanpa pemetaan ulang.
 
-Istilah Majemuk: Gunakan garis bawah (_) hanya jika sebuah istilah majemuk perlu dipertahankan sebagai satu kesatuan.
+---
 
-Multi-Mata Uang: Tambahkan sufiks mata uang yang jelas (contoh: .idr, .usd).
+## 3. Ekuitas (*Equity*)
 
-Multi-Entitas: Untuk struktur gabungan, sertakan pengenal entitas.
+### Definisi dan Konsep
+Ekuitas adalah **hak residual atas aset perusahaan** setelah dikurangi semua liabilitas.  
+Elemen ini menunjukkan kontribusi pemilik serta hasil akumulasi dari laba atau rugi yang ditahan.
 
-### PANDUAN KONTEKS LOKAL (INDONESIA)
-- Pemotongan PPh: Tambahkan identifikasi pasal pajak pada akun terkait (contoh: liabilities.tax.payable.pph23).
+Ditekankan bahwa ekuitas adalah hasil dari *transaksi pemilik dan hasil operasi*, sehingga pemisahannya harus jelas antara modal, laba ditahan, dan distribusi (dividen).
 
-- PPN: Bedakan dengan jelas antara PPN Masukan (assets.tax.prepaid.ppn) dan PPN Keluaran (liabilities.tax.payable.ppn).
+### Prinsip Penamaan
+Path akun untuk ekuitas dimulai dengan `equity`, diikuti oleh struktur modal, laba ditahan, dan distribusi pemilik.
 
-- Iuran Wajib: Tempatkan iuran seperti BPJS di bawah beban operasional yang relevan.
+### Contoh Struktur Hierarkis
 
-### WALAN NUMERIK DAN METADATA
-- Awalan Numerik (Opsional): Untuk menyelaraskan dengan sistem ERP lama, Anda bisa menambahkan awalan numerik. Pastikan penggunaannya konsisten.
-Contoh: 1.assets.cash.bank.bca atau 5.expenses.operational.marketing.instagram_ads
+| Kode | Nama Akun | Path Akun | Saldo Normal | Keterangan |
+| :-- | :-- | :-- | :-- | :-- |
+| 3.1.1.1 | Modal Disetor – Saham Biasa | `equity.paid_in.common_stock` | Kredit | Modal yang disetor pemilik melalui penerbitan saham biasa. |
+| 3.1.2.1 | Agio Saham | `equity.paid_in.additional_paid_in_capital` | Kredit | Selisih lebih setoran di atas nilai nominal saham. |
+| 3.2.1.0 | Laba Ditahan | `equity.retained_earnings` | Kredit | Akumulasi laba bersih yang tidak dibagikan. |
+| 3.3.1.0 | Dividen | `equity.dividends` | Debit | Pembagian laba kepada pemegang saham. |
 
-- Penyelarasan Metadata: Anda juga dapat menghubungkan setiap akun dengan data tambahan (seperti kode PSAK atau referensi IFRS) untuk mempermudah otomatisasi dan analisis.
+### Catatan
+Pendekatan ini selaras dengan *Statement of Changes in Equity* — setiap akun di bawah `equity` berkontribusi langsung terhadap rekonsiliasi perubahan ekuitas dari periode ke periode.
 
-Dengan mengikuti panduan ini, Anda dapat membangun bagan akun yang tidak hanya terstandar, tetapi juga fleksibel dan mudah dikelola.
+---
+
+## 4. Pendapatan (*Income*)
+
+### Definisi dan Konsep
+Pendapatan adalah **peningkatan manfaat ekonomi selama periode akuntansi** dalam bentuk arus masuk atau penambahan aset yang mengakibatkan kenaikan ekuitas, selain dari kontribusi pemilik.
+
+Dalam konteks *ini*, pendapatan dibedakan berdasarkan sumber utama (*core revenue*) dan pendapatan lain-lain (*non-operational income*).
+
+### Prinsip Penamaan
+Path akun pendapatan dimulai dengan `income`, diikuti dengan kategori utama seperti `sales`, `service`, atau `financial`.
+
+### Contoh Struktur Hierarkis
+
+| Kode | Nama Akun | Path Akun | Saldo Normal | Keterangan |
+| :-- | :-- | :-- | :-- | :-- |
+| 4.1.1.1 | Penjualan Produk Digital | `income.sales.product.digital` | Kredit | Pendapatan utama dari penjualan produk digital. |
+| 4.1.2.1 | Pendapatan Jasa Konsultasi | `income.sales.service.consulting` | Kredit | Pendapatan utama dari jasa konsultasi profesional. |
+| 4.2.1.1 | Retur Penjualan | `income.sales.returns_and_allowances` | Debit | Akun kontra untuk pengembalian barang atau potongan penjualan. |
+| 4.3.1.1 | Pendapatan Bunga Deposito | `income.financial.interest` | Kredit | Pendapatan non-operasional dari bunga simpanan bank. |
+
+### Catatan
+Pemecahan akun berdasarkan jenis produk dan jasa memungkinkan analisis pendapatan yang lebih tajam — penting untuk *performance management* dan pelaporan segmen.
+
+---
+
+## 5. Beban (*Expenses*)
+
+### Definisi dan Konsep
+Beban adalah **penurunan manfaat ekonomi** selama periode akuntansi dalam bentuk arus keluar atau timbulnya kewajiban, yang menyebabkan penurunan ekuitas.  
+
+Dalam praktiknya, beban dapat diklasifikasikan berdasarkan **fungsi** (misalnya operasional, penjualan, administrasi) atau **sifatnya** (gaji, sewa, penyusutan).
+
+Sistem *ini* menggunakan pendekatan fungsional untuk memastikan pelaporan yang lebih intuitif.
+
+### Prinsip Penamaan
+Path akun beban dimulai dengan `expenses`, dan subkategorinya menunjukkan fungsi utama.
+
+### Contoh Struktur Hierarkis
+
+| Kode | Nama Akun | Path Akun | Saldo Normal | Keterangan |
+| :-- | :-- | :-- | :-- | :-- |
+| 5.1.1.0 | Harga Pokok Penjualan Perangkat Lunak | `expenses.cogs.software_licenses` | Debit | Biaya langsung yang dikeluarkan untuk menghasilkan pendapatan. |
+| 5.2.1.1 | Beban Gaji dan Upah | `expenses.operational.payroll.salary` | Debit | Pengeluaran rutin untuk karyawan tetap dan kontrak. |
+| 5.2.1.2 | Beban Iuran BPJS | `expenses.operational.payroll.bpjs` | Debit | Iuran wajib jaminan sosial karyawan. |
+| 5.2.2.1 | Beban Iklan Digital | `expenses.operational.marketing.digital_ads` | Debit | Biaya kampanye pemasaran digital. |
+| 5.3.1.1 | Beban Sewa Kantor | `expenses.operational.general_and_admin.rent` | Debit | Pembayaran sewa fasilitas kerja. |
+| 5.4.1.1 | Beban Bunga Pinjaman | `expenses.financial.interest` | Debit | Biaya bunga atas pinjaman jangka pendek dan panjang. |
+| 5.5.1.1 | Beban Penyusutan Peralatan | `expenses.operational.depreciation.equipment` | Debit | Alokasi biaya perolehan aset tetap selama masa manfaat. |
+
+### Catatan
+Struktur ini memungkinkan analisis beban berdasarkan fungsi operasional tanpa perlu mengubah struktur laporan keuangan — misalnya menghitung *Total Operational Expenses* cukup dengan menjumlahkan seluruh akun di bawah `expenses.operational`.
+
+---
+
+## Studi Kasus: Translasi Transaksi ke Path Akun
+
+Untuk memahami manfaat praktis dari struktur ini, pertimbangkan contoh berikut:
+
+**Skenario:**
+Perusahaan menerima pembayaran Rp25.000.000 atas jasa *branding* dari klien.  
+Dana masuk ke rekening Bank Mandiri.
+
+**Analisis Transaksi:**
+- Kas di bank bertambah → Aset meningkat.  
+- Pendapatan jasa bertambah → Pendapatan meningkat.
+
+**Jurnal:**
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-14 | Kas di Bank Mandiri | `assets.cash.bank.mandiri` | 25.000.000 | |
+| 2025-10-14 | Pendapatan Jasa Branding | `income.sales.service.branding` | | 25.000.000 |
+
+Jurnal tersebut dapat dibaca manusia tanpa membuka bagan akun tambahan, sekaligus dapat diproses mesin untuk analisis atau pelaporan otomatis.
+
+---
+
+## Kesimpulan
+
+Struktur elemen dan contoh akun ini memperlihatkan bagaimana teori akuntansi klasik dapat diterjemahkan ke dalam sistem penamaan modern yang **deskriptif, logis, dan siap otomatisasi**.
+
+Dengan fondasi lima elemen utama dan hierarki yang konsisten, *Standar Penamaan Akun* ini membantu organisasi:
+
+- menjaga integritas pelaporan keuangan,  
+- mempercepat proses audit dan pelaporan pajak,  
+- serta membuka peluang integrasi data lintas sistem.
+
+Sistem ini diharapkan **arsitektur semantik keuangan** — tempat di mana setiap akun memiliki makna, konteks, dan posisi yang jelas dalam narasi keuangan perusahaan.

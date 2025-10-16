@@ -1,0 +1,286 @@
+---
+title: Perdagangan
+description: Struktur path akun untuk usaha perdagangan eceran (retail) dengan dua fase pajak PPh Final UMKM (PP 55/2022) dan PPh Non-Final Pasal 17.
+date: 2025-10-15
+mode: "wide"
+---
+
+# Rekening Semantik Khusus: Perdagangan Eceran Berbagai Macam Barang
+
+## 1. Pendahuluan
+
+Rekening Semantik ini digunakan oleh entitas **perdagangan eceran berbagai macam barang** — mencakup toko fisik, grosir kecil, penjualan online, dan reseller multikanal.
+
+Struktur ini mengakomodasi **dua fase perpajakan**:
+
+1. **Fase UMKM (PPh Final 0,5%)** — sesuai **PP No. 55 Tahun 2022**, berlaku untuk omzet ≤ Rp4,8 miliar per tahun.  
+2. **Fase Reguler (PPh Non-Final Pasal 17)** — berlaku setelah 3–4 tahun atau omzet melebihi batas, dengan sistem pajak berdasarkan laba bersih.
+
+Setiap akun pendapatan dan beban diberi **tag `.final` atau `.non_final`** agar sistem dapat otomatis memisahkan pelaporan pajak sesuai fase usaha.
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+```
+
+assets.cash.on_hand
+assets.cash.bank.bca
+assets.cash.bank.bri
+assets.cash.digital.qris
+assets.cash.digital.ewallet
+
+```
+
+### 2.2 Piutang dan Uang Muka
+```
+
+assets.receivable.customer
+assets.advance.supplier
+assets.prepaid.rent
+
+```
+
+### 2.3 Persediaan Barang Dagangan
+```
+
+assets.inventory.goods.merchandise
+assets.inventory.goods.consign
+assets.inventory.goods.returned
+
+```
+
+### 2.4 Aset Tetap
+```
+
+assets.fixed.equipment.display_shelf
+assets.fixed.equipment.pos_system
+assets.fixed.property.store_building
+assets.fixed.vehicle.delivery
+
+```
+
+### 2.5 Aset Pajak
+```
+
+assets.prepaid.tax.pph_final_umkm
+assets.prepaid.tax.pph25
+assets.prepaid.tax.vat
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Usaha
+```
+
+liabilities.payable.vendor
+liabilities.payable.purchase_credit
+liabilities.accrued.utilities
+
+```
+
+### 3.2 Utang Pajak
+```
+
+liabilities.tax.payable.pph_final_umkm
+liabilities.tax.payable.pph25
+liabilities.tax.payable.vat_output
+
+```
+
+### 3.3 Kewajiban Lainnya
+```
+
+liabilities.unearned.income.gift_card
+liabilities.deposit.received.customer
+
+```
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan struktur umum:
+```
+
+equity.capital.owner.individual
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Pendapatan Penjualan (Final – Fase UMKM)
+```
+
+income.sales.retail.offline.final
+income.sales.retail.online.final
+income.sales.wholesale.final
+income.sales.consign.final
+income.sales.discount_return.final
+
+```
+
+> **Penjelasan:**  
+> Berlaku untuk Wajib Pajak dengan omzet ≤ Rp4,8 miliar/tahun.  
+> PPh Final sebesar **0,5% dari omzet bruto** tanpa memperhitungkan biaya.
+
+### 5.2 Pendapatan Penjualan (Non-Final – Fase Reguler)
+```
+
+income.sales.retail.offline.non_final
+income.sales.retail.online.non_final
+income.sales.wholesale.non_final
+income.sales.consign.non_final
+
+```
+
+> **Penjelasan:**  
+> Setelah omzet melebihi Rp4,8 miliar atau lewat masa 3–4 tahun, penghasilan diakui sebagai **PPh Non-Final** (Pasal 17).  
+> Biaya menjadi deductible.
+
+### 5.3 Pendapatan Lainnya
+```
+
+income.other.service_delivery.non_final
+income.other.commission.non_final
+income.other.discount_vendor.non_final
+
+```
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Pokok Penjualan (HPP)
+```
+
+expenses.cogs.purchase_goods.deductible
+expenses.cogs.freight_in.deductible
+expenses.cogs.stock_adjustment.deductible
+
+```
+
+### 6.2 Beban Operasional
+```
+
+expenses.operational.payroll.salary.deductible
+expenses.operational.utilities.electricity.deductible
+expenses.operational.utilities.water.deductible
+expenses.operational.repair_maintenance.deductible
+expenses.operational.rent.store.deductible
+expenses.operational.transportation.deductible
+
+```
+
+### 6.3 Beban Administrasi
+```
+
+expenses.administrative.telecommunication.deductible
+expenses.administrative.stationery.deductible
+expenses.administrative.bank_fee.deductible
+expenses.administrative.software_subscription.deductible
+
+```
+
+### 6.4 Beban Pemasaran
+```
+
+expenses.marketing.advertising.digital.deductible
+expenses.marketing.advertising.print.deductible
+expenses.marketing.discount_promotion.deductible
+expenses.marketing.platform_fee.deductible
+
+```
+
+### 6.5 Beban Pajak
+```
+
+expenses.tax.pph_final_umkm.final
+expenses.tax.pph25.non_final
+expenses.tax.vat.deductible
+
+```
+
+> **Keterangan:**  
+> - `expenses.tax.pph_final_umkm.final` digunakan saat masih di fase UMKM (Final 0,5%).  
+> - Setelah menjadi wajib pajak reguler, beban pajak dihitung melalui `expenses.tax.pph25.non_final`.
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.inventory_count
+adjustments.sales_return
+adjustments.discount_reclassification
+
+```
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.income.rounding_adjustment
+other.expense.shrinkage_loss
+other.expense.theft_loss
+
+```
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+| Rekening Umum | Rekening Retail |
+| :-- | :-- |
+| `income.sales.product.retail.non_final` | `income.sales.retail.online.non_final` |
+| `expenses.operational.utilities.electricity.deductible` | `expenses.operational.utilities.electricity.deductible` |
+| `expenses.tax.pph25.non_final` | `expenses.tax.pph_final_umkm.final` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Penjualan tunai (fase UMKM) | `assets.cash.digital.qris` | `income.sales.retail.offline.final` |
+| Pembelian barang dagang | `assets.inventory.goods.merchandise` | `liabilities.payable.vendor` |
+| Pembayaran PPh Final 0,5% | `expenses.tax.pph_final_umkm.final` | `assets.cash.bank.bca` |
+| Penjualan online (fase non-final) | `assets.cash.digital.ewallet` | `income.sales.retail.online.non_final` |
+| Biaya iklan digital | `expenses.marketing.advertising.digital.deductible` | `assets.cash.bank.bri` |
+| Penyesuaian stok akhir | `adjustments.inventory_count` | `assets.inventory.goods.merchandise` |
+
+---
+
+## 11. Prinsip Umum Rekening Retail
+
+1. **Dualitas Pajak:**  
+   Struktur memungkinkan peralihan mulus dari **PPh Final 0,5%** ke **PPh Non-Final Pasal 17** tanpa mengubah path akun.
+
+2. **Tag Pajak:**  
+   Gunakan `.final` untuk fase UMKM dan `.non_final` untuk fase reguler.
+
+3. **Deductibility:**  
+   Semua biaya bersifat deductible di fase non-final, namun bersifat administratif di fase final (tidak memengaruhi pajak).
+
+4. **Kesederhanaan Laporan:**  
+   Cocok untuk integrasi dengan pelaporan PPh UMKM (Formulir 1770/1771 UMKM).
+
+5. **Keterbacaan Semantik:**  
+   Struktur `[rekening].[kategori].[subkategori].[detail].[spesifik]` memudahkan sistem ERP untuk memahami konteks transaksi tanpa kode numerik.
+
+---
+
+## 12. Kesimpulan
+
+Rekening Semantik Perdagangan Eceran menyediakan kerangka fleksibel bagi pelaku usaha ritel dari skala kecil hingga menengah.  
+Struktur ini mendukung **transisi pajak otomatis** dari fase **final** (PP 55/2022) ke fase **non-final** (Pasal 17),  
+serta mempertahankan konsistensi semantik dan pelaporan fiskal yang transparan.
+
+> Dengan pendekatan ini, pelaku usaha tidak perlu mengubah struktur akun saat usahanya bertumbuh — hanya mengganti tag pajak dari `.final` menjadi `.non_final`, dan seluruh sistem tetap berjalan tanpa migrasi manual.

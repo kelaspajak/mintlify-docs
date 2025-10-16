@@ -1,0 +1,296 @@
+---
+title: Konstruksi
+description: Daftar path akun khusus untuk industri konstruksi, disusun berdasarkan prinsip akuntansi proyek dan ketentuan pajak final PP No. 9 Tahun 2022.
+date: 2025-10-15
+mode: "wide"
+---
+
+# Rekening Semantik Khusus: Industri Konstruksi
+
+## 1. Pendahuluan
+
+Rekening Semantik Khusus untuk industri **konstruksi** dikembangkan untuk menangani kebutuhan pencatatan keuangan proyek pembangunan fisik, infrastruktur, dan jasa konstruksi, baik perencanaan, pengawasan, maupun pelaksanaan pekerjaan.
+
+Dokumen ini memperluas *Rekening Semantik Umum*, dengan akun tambahan yang menggambarkan karakteristik:
+- kontrak jangka panjang (*long-term construction contract*),
+- pekerjaan dalam proses (*work in progress*),
+- pendapatan berdasarkan progres pekerjaan, dan
+- perlakuan pajak final sesuai **Peraturan Pemerintah Nomor 9 Tahun 2022**.
+
+Struktur penamaan mengikuti pola universal:
+
+```
+
+[rekening].[kategori].[subkategori].[detail].[spesifik]
+
+```
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+Gunakan path umum:
+```
+
+assets.cash.bank.bca
+assets.cash.bank.mandiri
+
+```
+
+### 2.2 Piutang Proyek
+```
+
+assets.receivable.project.owner
+assets.receivable.project.subcontractor
+assets.receivable.retention
+assets.receivable.progress_claim
+
+```
+
+> **Keterangan:**  
+> Piutang proyek timbul akibat tagihan termin pekerjaan yang telah dilaksanakan namun belum dibayar oleh pemilik proyek (*project owner*).
+
+### 2.3 Persediaan dan Pekerjaan Dalam Proses
+```
+
+assets.inventory.material.construction
+assets.inventory.material.site
+assets.work_in_progress.building
+assets.work_in_progress.infrastructure
+assets.work_in_progress.mechanical
+
+```
+
+> **Catatan:**  
+> Akun `work_in_progress` digunakan untuk mencatat akumulasi biaya proyek hingga tahap pekerjaan dianggap selesai dan dapat diakui sebagai pendapatan.
+
+### 2.4 Aset Tetap Proyek
+```
+
+assets.fixed.equipment.heavy
+assets.fixed.equipment.site
+assets.fixed.equipment.vehicle.project
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Proyek dan Subkontraktor
+```
+
+liabilities.payable.subcontractor
+liabilities.payable.material_supplier
+liabilities.retention.payable
+liabilities.accrued.project_expense
+
+```
+
+### 3.2 Uang Muka Proyek
+```
+
+liabilities.advance.received.project
+liabilities.advance.received.material
+
+```
+
+> **Keterangan:**  
+> Penerimaan uang muka dari pemberi kerja dicatat sebagai kewajiban hingga progres pekerjaan disetujui dan diakui sebagai pendapatan.
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan path umum:
+```
+
+equity.capital.owner.individual
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Pendapatan Kontrak Konstruksi (PPh Final)
+```
+
+income.construction.contract.long_term.final
+income.construction.contract.short_term.final
+income.construction.contract.retention.final
+income.construction.contract.variation_order.final
+
+```
+
+> **Penjelasan:**  
+> Berdasarkan **Peraturan Pemerintah Nomor 9 Tahun 2022**, penghasilan dari jasa konstruksi dikenakan **PPh Final** atas penghasilan bruto, baik untuk kontrak jangka pendek maupun panjang.  
+> Label `.final` digunakan untuk memastikan pelaporan pajak dan rekonsiliasi fiskal otomatis.
+
+### 5.2 Pendapatan Jasa Perencanaan dan Pengawasan
+```
+
+income.construction.service.design.final
+income.construction.service.supervision.final
+income.construction.service.consulting.final
+
+```
+
+> **Catatan:**  
+> Tarif PPh Final ditentukan berdasarkan jenis jasa dan kepemilikan sertifikat badan usaha konstruksi (IUJK)
+
+### 5.3 Pendapatan Sewa Peralatan Proyek
+```
+
+income.rental.equipment.project.non_final
+income.rental.vehicle.project.non_final
+
+```
+
+> **Keterangan:**  
+> Pendapatan sewa peralatan tidak termasuk dalam kategori jasa konstruksi menurut PP No. 9 Tahun 2022 dan bersifat **non-final**.
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Proyek Langsung
+```
+
+expenses.project.material.usage.non_deductible
+expenses.project.labor.direct.non_deductible
+expenses.project.subcontractor.non_deductible
+expenses.project.equipment.rental.deductible
+expenses.project.transportation.deductible
+expenses.project.transportation.non_deductible
+expenses.project.site_utilities.non_deductible
+expenses.project.security_and_safety.deductible
+expenses.project.security_and_safety.deductible
+
+```
+
+### 6.2 Beban Overhead Proyek
+```
+
+expenses.overhead.site_office.rent.deductible
+expenses.overhead.site_office.utilities.deductible
+expenses.overhead.site_admin.salary.deductible
+expenses.overhead.site_admin.travel.deductible
+
+```
+
+### 6.3 Beban Kantor Pusat
+Gunakan path dari *Rekening Umum*, misalnya:
+```
+
+expenses.operational.payroll.salary.deductible
+expenses.administrative.telecommunication.deductible
+
+```
+
+### 6.4 Beban Garansi dan Retensi
+```
+
+expenses.project.retention.loss.deductible
+expenses.project.warranty.provision.deductible
+
+```
+
+> **Keterangan:**  
+> dalam satu rekening bisa saja terdapat dua path spesifik yang berbeda `.non_deductible` dan `deductible` karena melakukan penyerahan final dan non final
+
+### 6.5 Beban Pajak Final Konstruksi
+```
+
+expenses.tax.pph_construction.final
+
+```
+
+> **Deskripsi:**  
+> Digunakan untuk mencatat pemotongan atau penyetoran **PPh Final atas penghasilan jasa konstruksi** sesuai PP No. 9 Tahun 2022.  
+> Bersifat tidak dapat dikreditkan dan tidak diakui sebagai beban fiskal pengurang laba kena pajak.
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.project.progress_recognition
+adjustments.project.retention_reclassification
+adjustments.project.cost_allocation
+adjustments.project.estimate_revision
+
+```
+
+> Akun ini digunakan untuk pengakuan pendapatan progres, perubahan estimasi biaya, atau reklasifikasi biaya proyek menjadi aset tetap.
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.project.bonus_performance
+other.project.penalty_delay
+other.project.claim_reimbursement
+
+```
+
+> Akun-akun ini bergantung pada klausul kontrak proyek dan digunakan untuk mencatat insentif, penalti, atau klaim kompensasi.
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+Rekening Konstruksi berfungsi sebagai ekstensi dari *Rekening Semantik Umum*.  
+Akun-akun umum dapat digunakan bersamaan, dengan tambahan konteks proyek atau domain industri.
+
+| Rekening Umum | Rekening Konstruksi |
+| :-- | :-- |
+| `income.service.consulting.non_final` | `income.construction.service.consulting.final` |
+| `assets.inventory.goods_for_sale` | `assets.work_in_progress.building` |
+| `liabilities.payable.vendor.short_term` | `liabilities.payable.subcontractor` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Pembelian material proyek | `assets.inventory.material.construction` | `liabilities.payable.material_supplier` |
+| Pembayaran uang muka dari pemilik proyek | `assets.cash.bank.bca` | `liabilities.advance.received.project` |
+| Pengakuan pendapatan termin (PP 9/2022) | `assets.receivable.progress_claim` | `income.construction.contract.long_term.final` |
+| Pemotongan PPh Final atas termin proyek | `expenses.tax.pph_construction.final` | `liabilities.tax.payable.pph_final` |
+| Biaya tenaga kerja proyek | `expenses.project.labor.direct.deductible` | `assets.cash.bank.mandiri` |
+| Reklasifikasi pekerjaan selesai | `assets.work_in_progress.building` | `income.construction.contract.long_term.final` |
+
+---
+
+## 11. Prinsip Umum Rekening Konstruksi
+
+1. **Berbasis Proyek (Project-Oriented):**  
+   Setiap akun dapat diperluas dengan identitas proyek, misalnya:  
+   `income.construction.contract.long_term.project_A`
+
+2. **Proporsionalitas Pendapatan:**  
+   Pengakuan pendapatan mengikuti metode *percentage of completion* sesuai PSAK 72.
+
+3. **Perlakuan Pajak Final:**  
+   Semua penghasilan jasa konstruksi dikenakan PPh Final sesuai PP No. 9 Tahun 2022 dan tidak dikompensasikan terhadap rugi fiskal.
+
+4. **Keterhubungan Data:**  
+   Struktur path memudahkan integrasi antara laporan proyek, pelaporan pajak, dan analitik keuangan.
+
+5. **Konsistensi Semantik:**  
+   Format `[rekening].[kategori].[subkategori].[detail].[spesifik]` dipertahankan agar seluruh sistem menggunakan struktur identik.
+
+---
+
+## 12. Kesimpulan
+
+Rekening Semantik Konstruksi menyediakan kerangka terstruktur untuk akuntansi proyek jangka panjang dan pelaporan pajak final jasa konstruksi.  
+Dengan path yang deskriptif dan hierarkis, sistem ini menjamin:
+
+- keterbacaan lintas sistem (ERP, pajak, laporan keuangan),
+- kepatuhan terhadap **PP No. 9 Tahun 2022**, dan  
+- fleksibilitas dalam menambahkan detail proyek tanpa mengubah struktur utama.

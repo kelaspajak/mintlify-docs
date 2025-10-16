@@ -1,50 +1,168 @@
 ---
-title: "Akun Aset"
-description: "Namespace standar untuk aset, mencakup kas, piutang, dan aset tetap."
-mode: "center"
+title: Aset
+description: Penjelasan formal mengenai akun Aset dalam Standar Penamaan Akun Less Summer, termasuk definisi, ciri khas, struktur path, contoh transaksi, dan keterkaitannya dengan elemen akuntansi lain.
+date: 2025-10-15
+mode: "wide"
 ---
 
-| Kode | Nama Akun | Path | Saldo Normal | Contoh Transaksi |
-| :--- | :--- | :--- | :--- | :--- |
-| 1.1.1 | Kas | `assets.cash` | Debit | Setoran modal awal |
-| 1.1.2 | Bank - BCA | `assets.cash.bank.bca` | Debit | Pembayaran via transfer bank |
-| 1.2.1 | Piutang Usaha | `assets.receivable.customer.pt_tanjung_bira` | Debit | Penerbitan faktur ke PT Tanjung Bira |
-| 1.3.1 | PPN Dibayar di Muka | `assets.tax.prepaid.ppn` | Debit | PPN masukan atas pembelian |
-| 1.4.1 | Aset Tetap - Laptop | `assets.fixed.equipment.laptop` | Debit | Pembelian laptop |
+# Aset (Assets)
 
-#### Contoh: Rekening Bank Multi-Mata Uang
+## 1. Definisi
 
-```json
-{
-  "path": "assets.cash.bank.bca.usd",
-  "name": "Bank BCA USD",
-  "type": "asset",
-  "normal_balance": "debit",
-  "currency": "USD",
-  "metadata": {
-    "bank_code": "bca",
-    "account_number": "9876543210"
-  }
-}
+**Aset (Assets)** adalah sumber daya ekonomi yang dikendalikan oleh entitas sebagai hasil dari peristiwa masa lalu, dan dari mana manfaat ekonomi di masa depan diharapkan akan diperoleh.  
+Dalam laporan keuangan, aset menempati sisi **debit** dari neraca dan merupakan **akun real (permanent account)**, yang berarti saldo akun ini dibawa ke periode berikutnya dan tidak ditutup pada akhir tahun buku.
+
+Aset mencerminkan kapasitas ekonomi entitas — baik dalam bentuk kas, piutang, persediaan, maupun investasi — yang akan menghasilkan arus kas atau manfaat ekonomi di masa depan.
+
+---
+
+## 2. Ciri-Ciri Akun Aset
+
+| Karakteristik | Penjelasan |
+| :-- | :-- |
+| **Jenis Akun** | Real (Permanent Account) |
+| **Saldo Normal** | Debit |
+| **Posisi Laporan Keuangan** | Neraca (Statement of Financial Position) |
+| **Bertambah Ketika** | Entitas memperoleh atau menambah sumber daya ekonomi (misalnya kas diterima, piutang bertambah, aset tetap dibeli) |
+| **Berkurang Ketika** | Aset digunakan, dijual, disusutkan, atau hilang nilainya |
+| **Tujuan Pengukuran** | Menunjukkan posisi keuangan dan likuiditas entitas |
+| **Contoh Umum** | Kas, Bank, Piutang, Persediaan, Peralatan, Pajak Dibayar di Muka |
+
+---
+
+## 3. Struktur Path Akun Aset
+
+Standar Penamaan Akun Less Summer menggunakan struktur hierarkis berbentuk:
+
 ```
 
-#### Contoh Transaksi
+assets.[kategori].[subkategori].[detail].[spesifik]
 
-```json
-{
-  "date": "2025-03-05",
-  "description": "Pelunasan faktur INV-2025-015 dari Acme Corp",
-  "entries": [
-    {
-      "account": "assets.cash.bank.bca",
-      "debit": 11100000,
-      "credit": 0
-    },
-    {
-      "account": "assets.receivable.customer.pt_tanjung_bira",
-      "debit": 0,
-      "credit": 11100000
-    }
-  ]
-}
 ```
+
+Tiap segmen menjelaskan lapisan yang lebih rinci dari jenis aset tersebut.  
+Struktur ini bersifat terbuka dan dapat diperluas sesuai kebutuhan entitas.
+
+### 3.1 Kategori Utama Aset
+
+| Kategori | Deskripsi | Contoh Path |
+| :-- | :-- | :-- |
+| **cash** | Kas dan setara kas, baik di tangan maupun di bank | `assets.cash.bank.bca` |
+| **receivable** | Klaim terhadap pihak ketiga atas pembayaran di masa depan | `assets.receivable.customer` |
+| **inventory** | Persediaan barang dagangan atau bahan baku | `assets.inventory.merchandise` |
+| **fixed** | Aset tetap berwujud yang digunakan dalam operasi | `assets.fixed.equipment.laptop` |
+| **intangible** | Aset tidak berwujud seperti lisensi, hak cipta, atau software | `assets.intangible.software.saas_license` |
+| **prepaid** | Pembayaran di muka untuk manfaat ekonomi masa depan | `assets.prepaid.rent.office` |
+| **tax** | Aset pajak seperti pajak dibayar di muka (PPN masukan, PPh) | `assets.tax.prepaid.ppn` |
+| **investment** | Kepemilikan pada entitas lain yang memberikan manfaat jangka panjang | `assets.investment.shares.affiliated_company` |
+
+### 3.2 Contoh Path Akun Aset Lengkap
+
+```markdown
+
+assets.cash.petty_cash
+assets.cash.bank.bca
+assets.cash.bank.mandiri
+assets.receivable.customer
+assets.receivable.employee_advance
+assets.fixed.equipment.laptop
+assets.fixed.vehicle.car
+assets.prepaid.rent.office
+assets.tax.prepaid.ppn
+assets.intangible.software.adobe.premiere
+assets.intangible.software.microsoft.azure
+assets.investment.shares.associate_company
+
+```
+
+Setiap path di atas dapat dibaca secara naratif:
+> `assets.fixed.equipment.laptop` → Aset berupa peralatan (laptop) yang digunakan dalam operasi.
+
+---
+
+## 4. Contoh Transaksi
+
+### 4.1 Penerimaan Kas dari Pelanggan
+> Perusahaan menerima pembayaran dari pelanggan sebesar Rp10.000.000 melalui rekening Bank BCA.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-14 | Kas di Bank BCA | `assets.cash.bank.bca` | 10.000.000 | |
+| 2025-10-14 | Piutang Usaha | `assets.receivable.customer` | | 10.000.000 |
+
+### 4.2 Pembelian Aset Tetap
+> Pembelian laptop senilai Rp15.000.000 secara tunai dari dana bank.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-20 | Peralatan Laptop | `assets.fixed.equipment.laptop` | 15.000.000 | |
+| 2025-10-20 | Kas di Bank BCA | `assets.cash.bank.bca` | | 15.000.000 |
+
+### 4.3 Pembayaran Sewa Kantor di Muka
+> Pembayaran sewa kantor 6 bulan di muka sebesar Rp24.000.000.
+
+| Tanggal | Keterangan | Path Akun | Debit | Kredit |
+| :-- | :-- | :-- | :-- | :-- |
+| 2025-10-25 | Sewa Dibayar di Muka | `assets.prepaid.rent.office` | 24.000.000 | |
+| 2025-10-25 | Kas di Bank Mandiri | `assets.cash.bank.mandiri` | | 24.000.000 |
+
+---
+
+## 5. Relasi dengan Jenis Akun Lain
+
+Akun aset berinteraksi dengan akun lain dalam berbagai konteks:
+
+| Relasi | Hubungan yang Terjadi |
+| :-- | :-- |
+| **Liabilitas** | Penambahan aset dapat terjadi karena pembiayaan dari utang (misalnya pembelian secara kredit). |
+| **Ekuitas** | Investasi pemilik meningkatkan aset kas. |
+| **Pendapatan (Income)** | Peningkatan aset (misalnya piutang) merupakan hasil aktivitas pendapatan. |
+| **Beban (Expenses)** | Penurunan aset (misalnya kas keluar) mencerminkan beban operasional. |
+
+Dengan demikian, aset menjadi titik awal sekaligus penutup dari siklus akuntansi — merepresentasikan dampak kumulatif dari seluruh transaksi nominal (pendapatan dan beban).
+
+---
+
+## 6. Catatan Tambahan
+
+### 6.1 Akun Kontra Aset
+Beberapa aset memiliki **akun kontra** yang berfungsi mengurangi nilai buku aset tersebut, misalnya:
+- `assets.fixed.equipment.accumulated_depreciation`
+- `assets.receivable.allowance_for_doubtful_accounts`
+
+Akun kontra bersaldo kredit tetapi tetap diklasifikasikan dalam kelompok **Aset** karena secara substansi berhubungan dengan akun yang dikuranginya.
+
+### 6.2 Aset Pajak dan Kepatuhan Fiskal
+Untuk keperluan pelaporan pajak:
+- Pajak masukan dicatat dalam akun `assets.tax.prepaid.ppn`.  
+- Pajak dibayar di muka lainnya (misalnya PPh 25) juga termasuk dalam kelompok `assets.tax.prepaid.pph25`.
+
+Struktur ini memungkinkan sistem secara otomatis mengidentifikasi saldo pajak yang dapat dikreditkan di masa mendatang.
+
+### 6.3 Implikasi Sistem dan Integrasi
+- Dalam ERP atau sistem API, setiap akun aset memiliki *path key* yang unik sehingga mudah dihubungkan dengan modul kas, persediaan, dan aset tetap.  
+- Pendekatan ini memungkinkan pelaporan posisi keuangan dilakukan tanpa referensi numerik, melainkan berbasis semantik.
+
+---
+
+## 7. Kesimpulan
+
+Aset merupakan elemen fundamental dalam sistem akuntansi dan menjadi dasar dari seluruh aktivitas keuangan entitas.  
+Dengan menggunakan *Standar Penamaan Akun Less Summer*, akun aset tidak hanya menggambarkan posisi keuangan, tetapi juga menyimpan makna semantik yang dapat dibaca manusia dan sistem secara bersamaan.
+
+Struktur path seperti:
+
+```
+
+assets.fixed.equipment.laptop
+assets.cash.bank.bca
+assets.tax.prepaid.ppn
+
+```
+
+membentuk **bahasa akuntansi yang deskriptif dan interoperabel**, memungkinkan:
+- Otomatisasi pelaporan keuangan,  
+- Integrasi lintas sistem, dan  
+- Transparansi penuh dalam interpretasi data keuangan.
+
+Akun aset, sebagai **akun real (permanent)**, mencerminkan keberlanjutan posisi ekonomi organisasi — menjembatani masa lalu (perolehan), masa kini (penggunaan), dan masa depan (manfaat ekonomi) secara konsisten dan terstruktur.
