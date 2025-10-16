@@ -3,15 +3,18 @@
   "theme": "mint",
   "name": "Akuntansi Pajak",
   "colors": {
-    "primary": "#ea580c",
-    "light": "#07C983",
-    "dark": "#eb5611"
+    "primary": "#3B82F6",
+    "light": "#F8FAFC",
+    "dark": "#0F172A"
   },
   "seo": {
     "indexing": "all"
   },
-  "image": {
-    "light": "/logo/logo-diskusi-perpajakan.png"
+  "background": {
+    "image": {
+      "light": "/images/v904-nunny-017-a.jpg",
+      "dark": "/images/artistic-blurry.jpg"
+    }
   },
   "styling": {
     "codeblocks": {
@@ -25,22 +28,11 @@
         "tab": "Akuntansi",
         "groups": [
           {
-            "group": "Writing content",
-            "hidden": true,
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
             "group": "Pendahuluan",
             "icon": "rocket",
             "pages": [
               "get-started/welcome",
               "get-started/quickstart",
-              "get-started/format-syntax",
               "get-started/implementation"
             ]
           },
@@ -48,21 +40,23 @@
             "group": "Kategori Akun",
             "icon": "book",
             "pages": [
-              "account-categories/assets",
-              "account-categories/liabilities",
-              "account-categories/equity",
-              "account-categories/income",
-              "account-categories/expense"
+              "rekening/aset",
+              "rekening/liabilitas",
+              "rekening/ekuitas",
+              "rekening/pendapatan",
+              "rekening/beban"
             ]
           },
           {
-            "group": "Set Rekening",
+            "group": "Template Rekening",
             "icon": "wallet",
             "pages": [
-              "set-rekening/core",
-              "set-rekening/konstruksi",
-              "set-rekening/real-estate",
-              "set-rekening/perdagangan"
+              "template/core",
+              "template/konstruksi",
+              "template/real-estate",
+              "template/perdagangan",
+              "template/perdagangan-besar",
+              "template/manufaktur-ringan"
             ]
           }
         ]
