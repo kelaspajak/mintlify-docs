@@ -10,7 +10,6 @@
   "icons": {
     "library": "lucide"
   },
-"appearance": "light",
   "seo": {
     "indexing": "all"
   },
@@ -29,11 +28,11 @@
   },
   "styling": {
     "codeblocks": {
-    "theme": {
-      "light": "github-light",
-      "dark": "github-dark"
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
     }
-  }
   },
   "favicon": "/favicon.ico",
   "navigation": {
