@@ -1,0 +1,133 @@
+---
+title: "Hero Welcome"
+description: "Sambutan hero untuk pengunjung baru"
+mode: "custom"
+---
+
+import { Gradient } from "@mintlify/components";
+
+<div style={{ padding: "3rem" }}>
+  <Gradient
+    variant="spotlight"
+    gradientColor="rgba(59, 130, 246, 0.4)"
+    backgroundImageLight="/images/v904-nunny-017-a.jpg"
+    backgroundImageDark="/images/artistic-blurry.jpg"
+    className="hero-section"
+  >
+    <div className="hero">
+      <div className="hero__content px-12">
+        <h1>Bangun bagan akun yang bercerita</h1>
+        <p>
+          Rekening Semantik mengubah kode numerik menjadi path hierarkis yang deskriptif,
+          sehingga tim finansial dan sistem otomatis berbicara dengan bahasa yang sama.
+        </p>
+        <div className="hero__actions">
+          <Button href="/get-started/quickstart" variant="primary">
+            Mulai tiga langkah cepat
+          </Button>
+          <Button href="/template/core" variant="secondary">
+            Telusuri template inti
+          </Button>
+        </div>
+      </div>
+      <div className="hero__visual">
+        <img
+          src="/images/v904-nunny-017-a.jpg"
+          alt="Ilustrasi bagan akun semantik"
+        />
+      </div>
+    </div>
+  </Gradient>
+
+  ## Mengapa Rekening Semantik penting?
+
+  <Columns cols={3}>
+    <Card
+      title="Lebih deskriptif"
+      icon="book"
+      href="/rekening/aset"
+    >
+      Gantikan kode numerik dengan path yang menyampaikan peran akun secara eksplisit.
+    </Card>
+    <Card
+      title="Siap otomatisasi"
+      icon="bolt"
+      href="/get-started/implementation"
+    >
+      Tambahkan kolom `standard_account_path` untuk integrasi ERP, API, dan pelaporan pajak.
+    </Card>
+    <Card
+      title="Konsisten lintas tim"
+      icon="users"
+      href="/rekening/pendapatan"
+    >
+      Satukan istilah yang dipakai tim finance, operasional, dan manajemen.
+    </Card>
+  </Columns>
+
+  ## Jalur cepat
+
+  <Columns cols={3}>
+    <Card
+      title="Pengantar"
+      icon="lightbulb"
+      href="/get-started/welcome"
+    >
+      Pelajari filosofi desain dan latar belakang standar Less Summer.
+    </Card>
+    <Card
+      title="Quickstart"
+      icon="list-check"
+      href="/get-started/quickstart"
+    >
+      Ikuti panduan singkat untuk mengadopsi Reckening Semantik.
+    </Card>
+    <Card
+      title="Akun utama"
+      icon="wallet"
+      href="/template/core"
+    >
+      Gunakan template path yang siap diterapkan di organisasi mana pun.
+    </Card>
+  </Columns>
+
+  ## Temukan yang kamu butuhkan
+
+  <Columns cols={4}>
+    <Card
+      title="Aset"
+      icon="wallet"
+      href="/rekening/aset"
+    >
+      Dokumentasikan sumber daya organisasi secara terstruktur.
+    </Card>
+    <Card
+      title="Liabilitas"
+      icon="scale-balanced"
+      href="/rekening/liabilitas"
+    >
+      Catat kewajiban tanpa kehilangan konteks bisnisnya.
+    </Card>
+    <Card
+      title="Pendapatan"
+      icon="coins"
+      href="/rekening/pendapatan"
+    >
+      Lacak alur pemasukan dengan detail yang mudah dianalisis.
+    </Card>
+    <Card
+      title="Beban"
+      icon="receipt"
+      href="/rekening/beban"
+    >
+      Kelompokkan pengeluaran dengan path yang konsisten dan siap audit.
+    </Card>
+  </Columns>
+
+  <Callout icon="stars" color="blue">
+    Siap memulai? Gabung ke komunitas kami di Telegram untuk diskusi lanjutan dan praktik terbaik.
+    <Button href="https://t.me/diskusipajak" variant="primary">
+      Gabung komunitas
+    </Button>
+  </Callout>
+</div>
