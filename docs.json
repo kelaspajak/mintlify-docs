@@ -1,20 +1,20 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Akuntansi Pajak",
   "colors": {
-    "primary": "#3B82F6",
-    "light": "#F8FAFC",
-    "dark": "#0F172A"
+    "primary": "#eb5611",
+    "light": "#eb5611",
+    "dark": "#eb5611"
+  },
+  "icons": {
+    "library": "lucide"
   },
   "seo": {
     "indexing": "all"
   },
   "background": {
-    "image": {
-      "light": "/images/v904-nunny-017-a.jpg",
-      "dark": "/images/artistic-blurry.jpg"
-    }
+    "image": "/images/background-light.png"
   },
   "styling": {
     "codeblocks": {
@@ -31,8 +31,9 @@
             "group": "Pendahuluan",
             "icon": "rocket",
             "pages": [
+              "index",
               "get-started/welcome",
-              "get-started/quickstart",
+              "get-started/struktur-sintax",
               "get-started/implementation"
             ]
           },
@@ -67,6 +68,11 @@
         {
           "anchor": "Grup Telegram",
           "href": "https://t.me/diskusipajak",
+          "icon": "telegram"
+        },
+        {
+          "anchor": "Pembuka",
+          "href": "/index",
           "icon": "telegram"
         }
       ]

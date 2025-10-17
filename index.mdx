@@ -3,276 +3,136 @@ title: "Introduction"
 description: "Welcome to the new home for your documentation"
 ---
 
-# Standar Penamaan Akun Less Summer
+Yth. pengunjung,
 
-## Pendahuluan
+Selamat datang di rumah baru dokumentasi Standar Penamaan Akun Less Summer. Kami mengundangmu mengenal Rekening Semantik, kerangka penamaan akun yang mengganti kode numerik menjadi path hierarkis deskriptif agar manusia dan sistem berbagi bahasa yang sama.
 
-**Standar Penamaan Akun Less Summer** adalah sebuah kerangka sistematis untuk menata bagan akun (*Chart of Accounts*) agar lebih **deskriptif, konsisten, dan siap diintegrasikan** dengan sistem keuangan modern.
+Standar ini menjawab tantangan sistem lama yang sulit diintegrasikan, penuh ambiguitas, dan menghambat otomatisasi. Dengan struktur storytelling seperti `assets.cash.bank.mandiri`, setiap akun berubah menjadi narasi jelas tentang peran ekonominya.
 
-Tujuan utama dari standar ini adalah menciptakan **bahasa keuangan yang dapat dipahami oleh manusia dan mesin**, menggantikan model kode numerik yang ambigu dengan struktur hierarkis yang bermakna.  
-Setiap akun tidak lagi hanya berupa angka, tetapi menjadi **narasi logis** tentang posisi dan fungsi keuangan dalam organisasi.
+Format penulisan mengikuti pola `[rekening].[kategori].[subkategori].[detail].[spesifik]`, menjaga konsistensi sekaligus fleksibilitas. Kamu akan menemukan contoh lengkap untuk lima elemen utama laporan keuangan—aset, liabilitas, ekuitas, pendapatan, dan beban—beserta ilustrasi path yang siap dipakai.
 
----
+Kami merekomendasikan pendekatan dual system: pertahankan kode lama sambil menambahkan kolom `standard_account_path` agar sistem akuntansi, ERP, dan API langsung memahami konteks akun tanpa pemetaan manual.
 
-## Mengapa Diperlukan Standar Baru?
+Manfaatnya menyentuh laporan keuangan, audit pajak, otomasi, dan kolaborasi lintas tim, karena semua pihak membaca istilah yang sama. Ikuti praktik terbaik kami: pakai huruf kecil, batasi kedalaman tiga hingga lima level, tambahkan akun secara berjenjang, lakukan audit berkala, dan gunakan istilah universal yang relevan dengan regulasi Indonesia.
 
-Selama beberapa dekade, sistem akuntansi menggunakan **kode numerik empat atau enam digit** untuk mengidentifikasi akun.  
-Namun, di era digital dan otomatisasi, pendekatan tersebut menghadapi berbagai tantangan:
+Standar ini dirancang kompatibel dengan regulasi pajak lokal, sistem ERP modern, integrasi API, dan kerangka IFRS/PSAK. Ia menjadi jembatan semantik antara pencatatan klasik dan ekosistem digital.
 
-- Tidak intuitif dan sulit dipahami lintas departemen,  
-- Menyulitkan integrasi dengan sistem ERP, API, dan pelaporan pajak elektronik,  
-- Menghambat proses analitik dan otomatisasi,  
-- Dan menimbulkan ambiguitas dalam interpretasi laporan keuangan.
+Untuk eksplorasi mendalam, telusuri tiga bagian utama dokumentasi: pengantar dan filosofi, struktur dan sintaks, elemen serta contoh akun, lalu panduan implementasi dan praktik terbaik. Kalau ingin langsung membangun situs dokumentasi, kami juga menyediakan template core akun dan template akun per industri.
 
-*Less Summer Standard* menjawab tantangan ini dengan mengganti kode numerik menjadi struktur deskriptif berbasis **path hierarkis** yang menggambarkan hubungan antar akun secara alami.
+Kami berharap surat ini membuatmu siap menggali lebih jauh dan memanfaatkan standar baru ini untuk menceritakan kisah finansial organisasi secara transparan dan otomatis.
 
----
+Salam hangat,
+Less Summer
 
-## Filosofi Desain: Struktur yang Bercerita
+## Mulai dari pendahuluan
 
-Filosofi inti sistem ini adalah **“struktur yang bercerita”** (*storytelling structure*).  
-Setiap akun merepresentasikan sebuah kalimat deskriptif yang menjelaskan peran ekonominya.
-
-Contoh:
-
-```
-
-assets.cash.bank.mandiri
-
-```
-→ *“Aset berupa kas yang disimpan di Bank Mandiri.”*
-
-```
-
-income.sales.service.consulting
-
-```
-→ *“Pendapatan dari penjualan jasa konsultasi.”*
-
-Dengan pendekatan ini, bagan akun menjadi alat komunikasi yang **transparan, mudah dibaca, dan konsisten secara semantik**, baik oleh tim keuangan, manajemen, maupun sistem komputer.
-
----
-
-## Struktur Hierarkis dan Sintaks
-
-Sistem ini dibangun menggunakan format:
-
-```
-
-[rekening].[kategori].[subkategori].[detail].[spesifik]
-
-```
-
-Setiap segmen dipisahkan oleh titik (`.`), menggambarkan urutan logis dari elemen paling umum hingga yang paling spesifik.
-
-Contoh penerapan:
-
-| Jenis Akun | Path Akun | Keterangan |
-| :-- | :-- | :-- |
-| Aset Kas di Bank BCA | `assets.cash.bank.bca` | Aset lancar berupa saldo kas di rekening BCA. |
-| Pendapatan Jasa Konsultasi | `income.sales.service.consulting` | Pendapatan utama dari jasa profesional. |
-| Beban Iklan Digital | `expenses.operational.marketing.digital_ads` | Pengeluaran untuk kampanye digital marketing. |
-
-Struktur ini menjadikan setiap akun sebagai entitas yang **logis, fleksibel, dan dapat diotomatisasi** tanpa memerlukan referensi eksternal.
-
----
-
-## Lima Elemen Fundamental
-
-Sama seperti kerangka konseptual dalam *Intermediate Accounting* (Kieso) dan *Akuntansi Keuangan Menengah* (Zaki Baridwan), standar ini berakar pada **lima elemen utama laporan keuangan**:
-
-| Elemen | Deskripsi | Contoh Path |
-| :-- | :-- | :-- |
-| **Aset (Assets)** | Sumber daya ekonomi yang dimiliki entitas. | `assets.fixed.equipment.laptop` |
-| **Liabilitas (Liabilities)** | Kewajiban kini yang timbul dari peristiwa masa lalu. | `liabilities.tax.payable.pph23` |
-| **Ekuitas (Equity)** | Hak residual atas aset setelah dikurangi liabilitas. | `equity.retained_earnings` |
-| **Pendapatan (Income)** | Kenaikan manfaat ekonomi dari aktivitas operasi. | `income.sales.product.digital` |
-| **Beban (Expenses)** | Penurunan manfaat ekonomi akibat konsumsi sumber daya. | `expenses.operational.payroll.salary` |
-
-Dengan struktur ini, setiap akun secara langsung terhubung dengan posisi dan fungsinya di laporan keuangan — *neraca* maupun *laba rugi*.
-
----
-
-## Penerapan dalam Sistem Akuntansi
-
-Implementasi standar ini dapat dilakukan tanpa mengubah sistem ERP atau software akuntansi yang sudah ada.  
-Pendekatan yang direkomendasikan adalah **dual system approach** — menambahkan kolom baru bernama `standard_account_path` di samping `account_code` lama.
-
-| account_code | account_name | standard_account_path |
-| :-- | :-- | :-- |
-| 1102 | Bank Mandiri | `assets.cash.bank.mandiri` |
-| 4100 | Penjualan Jasa | `income.sales.service.consulting` |
-| 5230 | Beban Listrik | `expenses.operational.utilities.electricity` |
-
-Dengan cara ini, sistem lama tetap berfungsi normal, sementara standar baru memperkenalkan **semantik tambahan** yang membuka peluang otomatisasi dan analitik tingkat lanjut.
-
----
-
-## Manfaat Strategis
-
-Penerapan *Standar Penamaan Akun Less Summer* memberikan dampak jangka panjang terhadap efisiensi dan kualitas pelaporan keuangan.
-
-| Bidang | Manfaat |
-| :-- | :-- |
-| **Pelaporan Keuangan** | Akun lebih mudah ditelusuri dan dikelompokkan tanpa pemetaan manual. |
-| **Audit dan Kepatuhan Pajak** | Struktur akun yang eksplisit mempermudah pelacakan PPN, PPh, dan beban operasional. |
-| **Otomatisasi Sistem** | Path deskriptif dapat diproses langsung oleh sistem BI dan API tanpa kode tambahan. |
-| **Kolaborasi Lintas Tim** | Semua departemen menggunakan istilah yang sama, menghilangkan perbedaan interpretasi. |
-
-Dengan pendekatan ini, organisasi memperoleh kejelasan semantik yang mempercepat proses pengambilan keputusan berbasis data.
-
----
-
-## Praktik Terbaik Implementasi
-
-1. **Gunakan format baku dengan huruf kecil dan titik pemisah (`.`).**  
-   Contoh: `expenses.operational.marketing.digital_ads`.
-
-2. **Batasi kedalaman hierarki antara tiga hingga lima level.**  
-   Struktur terlalu dalam dapat mengurangi efisiensi pelaporan.
-
-3. **Tambahkan akun baru secara berjenjang, bukan acak.**  
-   Misal: `assets.cash.bank.bni`, bukan `assets.bank2`.
-
-4. **Lakukan validasi berkala dan audit internal.**  
-   Pastikan seluruh akun baru tetap mengikuti standar path.
-
-5. **Gunakan istilah yang universal dan konsisten.**  
-   Bahasa Inggris dipertahankan untuk kompatibilitas lintas sistem, dengan pengecualian pada terminologi pajak Indonesia (misal `pph21`, `ppn`).
-
----
-
-## Integrasi dengan Regulasi dan Teknologi
-
-Sistem ini dirancang agar kompatibel dengan:
-
-- **Pelaporan pajak Indonesia**, termasuk PPN, PPh 21, 23, dan 4(2);  
-- **ERP dan sistem akuntansi digital;  
-- **API keuangan dan dashboard analitik**, menggunakan path sebagai key semantik;  
-- **Standar akuntansi internasional (IFRS/PSAK)** untuk keperluan audit eksternal.
-
-Dengan demikian, *Standar Penamaan Akun Less Summer* berfungsi sebagai **jembatan semantik** antara pelaporan keuangan tradisional dan ekosistem keuangan digital masa kini.
-
----
-
-## Kesimpulan
-
-Standar ini bukan sekadar sistem penamaan akun, melainkan **metodologi baru dalam mendokumentasikan struktur keuangan organisasi**.  
-Ia memadukan ketelitian akuntansi klasik dengan efisiensi teknologi modern, menciptakan sistem yang:
-
-- **deskriptif secara semantik**,  
-- **konsisten lintas sistem**, dan  
-- **siap untuk otomatisasi penuh.**
-
-Dengan mengadopsi kerangka ini, organisasi membangun pondasi data keuangan yang **tidak hanya akurat secara angka, tetapi juga bermakna secara konteks** — menjadikan setiap akun bukan sekadar label, melainkan bagian dari cerita finansial perusahaan yang utuh dan transparan.
-
----
-
-## Dokumentasi Lengkap
-
-Dokumentasi ini terdiri dari empat bagian utama:
-
-1. [**Pengantar dan Filosofi Desain**](/get-stated/pengantar-dan-filosofi.md)  
-   Menjelaskan alasan, latar belakang, dan filosofi di balik sistem baru.  
-
-2. [**Struktur dan Sintaks Akun**](/get-stated/struktur-dan-sintaks-akun.md)  
-   Menjabarkan pola umum, aturan penulisan, dan format hierarki akun.  
-
-3. [**Struktur Elemen dan Contoh Akun**](/get-stated/struktur-elemen-dan-contoh-akun.md)  
-   Menguraikan lima elemen utama laporan keuangan dengan contoh path deskriptif.  
-
-4. [**Implementasi dan Praktik Terbaik**](/get-stated/implementasi-dan-best-practices.md)  
-   Memberikan panduan penerapan, migrasi sistem, dan pengendalian konsistensi.
-   
-## Setting up
-
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
+<Columns cols={3}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="Pengantar standar"
+    icon="rocket"
+    href="/get-started/welcome"
   >
-    Edit your docs locally and preview them in real time.
+    Kenali latar belakang dan filosofi Rekening Semantik.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Quickstart"
+    icon="list-checks"
+    href="/get-started/quickstart"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    Ikuti panduan tiga langkah untuk mulai menggunakan standar.
   </Card>
   <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
+    title="Implementasi"
+    icon="settings"
+    href="/get-started/implementation"
   >
-    Auto-generate API documentation from OpenAPI specifications.
+    Terapkan standar di sistem akuntansimu tanpa migrasi penuh.
   </Card>
 </Columns>
 
-## Create beautiful pages
+## Pelajari kategori akun
 
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
+<Columns cols={3}>
   <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
+    title="Aset"
+    icon="wallet"
+    href="/rekening/aset"
   >
-    Use MDX to style your docs pages.
+    Pahami struktur akun aset dan contoh path semantiknya.
   </Card>
   <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
+    title="Liabilitas"
+    icon="scale"
+    href="/rekening/liabilitas"
   >
-    Add sample code to demonstrate how to use your product.
+    Telusuri kewajiban dan cara memetakannya ke path standar.
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Ekuitas"
+    icon="bar-chart-3"
+    href="/rekening/ekuitas"
   >
-    Display images and other media.
+    Dokumentasikan hak residual organisasi secara konsisten.
   </Card>
   <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
+    title="Pendapatan"
+    icon="coins"
+    href="/rekening/pendapatan"
   >
-    Write once and reuse across your docs.
+    Susun akun pendapatan yang deskriptif dan mudah dianalisis.
+  </Card>
+  <Card
+    title="Beban"
+    icon="receipt"
+    href="/rekening/beban"
+  >
+    Kelompokkan pengeluaran operasional dengan path yang rapi.
   </Card>
 </Columns>
 
-## Need inspiration?
+## Gunakan template rekening
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Columns cols={3}>
+  <Card
+    title="Template inti"
+    icon="layers"
+    href="/template/core"
+  >
+    Mulai dari daftar akun standar yang relevan di berbagai industri.
+  </Card>
+  <Card
+    title="Konstruksi"
+    icon="hard-hat"
+    href="/template/konstruksi"
+  >
+    Terapkan path khusus proyek konstruksi dan jasa terkait.
+  </Card>
+  <Card
+    title="Real estate"
+    icon="building-2"
+    href="/template/real-estate"
+  >
+    Kelola portofolio properti dengan akuntansi semantik.
+  </Card>
+  <Card
+    title="Perdagangan"
+    icon="shopping-cart"
+    href="/template/perdagangan"
+  >
+    Optimalkan pencatatan untuk usaha retail dan distribusi.
+  </Card>
+  <Card
+    title="Perdagangan besar"
+    icon="truck"
+    href="/template/perdagangan-besar"
+  >
+    Catat aktivitas grosir dengan pelacakan stok dan margin jelas.
+  </Card>
+  <Card
+    title="Manufaktur ringan"
+    icon="factory"
+    href="/template/manufaktur-ringan"
+  >
+    Documentasikan proses produksi dengan struktur akun bertahap.
+  </Card>
+</Columns>
