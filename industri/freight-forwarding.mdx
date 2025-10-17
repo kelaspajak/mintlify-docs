@@ -1,0 +1,307 @@
+---
+title: Freight Forwarding & Logistik
+description: Struktur path akun untuk usaha jasa freight forwarding, ekspedisi, dan logistik mencakup pengangkutan darat, laut, udara, pergudangan, dan biaya pihak ketiga.
+date: 2025-10-15
+mode: "wide"
+---
+## 1. Pendahuluan
+
+Rekening Semantik ini disusun untuk perusahaan yang bergerak di bidang **freight forwarding** — jasa pengurusan transportasi dan logistik yang mencakup kegiatan:
+- pengiriman barang domestik dan internasional (laut, udara, darat),
+- penanganan kepabeanan dan dokumen ekspor–impor,
+- penyediaan jasa gudang (warehousing) dan distribusi,
+- serta pengelolaan supply chain untuk pihak ketiga.
+
+Industri ini dikategorikan dalam **KBLI 52292 – Aktivitas Pengurusan Transportasi (Freight Forwarding)**,  
+dikenakan **PPh Non-Final (Pasal 17)** dan **PPN 11% atas jasa logistik**.  
+Sebagian biaya seperti jasa pengangkutan atau asuransi sering bersifat **reimbursable (dibayar di muka untuk klien)**.
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+```markdown
+
+assets.cash.on_hand
+assets.cash.bank.bca
+assets.cash.bank.mandiri
+assets.cash.bank.bri
+assets.cash.digital.qris
+
+```
+
+### 2.2 Piutang dan Uang Muka
+```
+
+assets.receivable.customer.freight
+assets.receivable.reimbursable_cost
+assets.advance.payment_to_shipping_line
+assets.advance.payment_to_trucker
+assets.prepaid.expense.insurance
+assets.prepaid.expense.customs
+
+```
+
+### 2.3 Aset Tetap
+```
+
+assets.fixed.vehicle.truck
+assets.fixed.equipment.handling_forklift
+assets.fixed.property.warehouse
+assets.fixed.office_equipment
+
+```
+
+### 2.4 Aset Pajak
+```
+
+assets.prepaid.tax.pph25
+assets.prepaid.tax.vat_input
+assets.prepaid.tax.pph23
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Usaha dan Akrual
+```
+
+liabilities.payable.shipping_line
+liabilities.payable.airline
+liabilities.payable.trucking_vendor
+liabilities.payable.warehouse_vendor
+liabilities.accrued.salary
+liabilities.accrued.utility
+
+```
+
+### 3.2 Kewajiban Pajak
+```
+
+liabilities.tax.payable.pph23
+liabilities.tax.payable.vat_output
+liabilities.tax.payable.pph25
+
+```
+
+### 3.3 Kewajiban Lainnya
+```
+
+liabilities.unearned.income.advance_payment
+liabilities.deposit.received.customer
+
+```
+
+> **Catatan:**  
+> `liabilities.unearned.income.advance_payment` digunakan untuk pencatatan uang muka dari pelanggan sebelum jasa selesai diberikan.
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan struktur umum:
+```
+
+equity.capital.owner.corporate
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Pendapatan Utama (Freight dan Logistik)
+```
+
+income.service.freight.domestic.non_final
+income.service.freight.international.non_final
+income.service.trucking.non_final
+income.service.warehousing.non_final
+income.service.custom_clearance.non_final
+income.service.project_logistic.non_final
+
+```
+
+> **Penjelasan:**  
+> Semua pendapatan jasa bersifat **PPh Non-Final (Pasal 17)** dan terutang **PPN 11%**.  
+> Pendapatan diakui berdasarkan **PSAK 72** pada saat jasa logistik selesai diberikan.
+
+### 5.2 Pendapatan Reimbursable dan Komisi
+```
+
+income.other.reimbursable_fee.non_final
+income.other.handling_fee.non_final
+income.other.agent_commission.non_final
+
+```
+
+> **Keterangan:**  
+> `reimbursable_fee` adalah penggantian biaya yang dikeluarkan atas nama klien (seperti biaya pelabuhan, asuransi, dll).
+
+### 5.3 Pendapatan Lainnya
+```
+
+income.other.storage_fee.non_final
+income.other.late_payment_charge.non_final
+income.other.currency_gain.non_final
+
+```
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Langsung Jasa
+```
+
+expenses.service.shipping_line_cost.deductible
+expenses.service.airfreight_cost.deductible
+expenses.service.trucking_cost.deductible
+expenses.service.warehouse_rent.deductible
+expenses.service.custom_clearance_cost.deductible
+expenses.service.insurance_premium.deductible
+
+```
+
+> **Penjelasan:**  
+> Beban langsung berkaitan langsung dengan pendapatan logistik — termasuk pembayaran ke vendor transportasi dan pihak ketiga.
+
+### 6.2 Beban Reimbursable
+```
+
+expenses.reimbursable.port_charge.deductible
+expenses.reimbursable.custom_fee.deductible
+expenses.reimbursable.handling_fee.deductible
+expenses.reimbursable.inspection_fee.deductible
+
+```
+
+> Biaya ini akan ditagihkan kembali kepada pelanggan; tidak menambah laba, hanya sebagai aliran kas.
+
+### 6.3 Beban Operasional
+```
+
+expenses.operational.payroll.salary.deductible
+expenses.operational.utilities.electricity.deductible
+expenses.operational.utilities.internet.deductible
+expenses.operational.rent.office.deductible
+expenses.operational.office_supplies.deductible
+expenses.operational.vehicle_fuel.deductible
+expenses.operational.repair_maintenance.deductible
+
+```
+
+### 6.4 Beban Administrasi
+```
+
+expenses.administrative.bank_fee.deductible
+expenses.administrative.professional_fee.deductible
+expenses.administrative.software_subscription.deductible
+expenses.administrative.license_and_permit.deductible
+
+```
+
+### 6.5 Beban Pajak
+```
+
+expenses.tax.pph23.deductible
+expenses.tax.pph25.deductible
+expenses.tax.vat.deductible
+
+```
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.accrued_service_income
+adjustments.revenue_recognition
+adjustments.reimbursable_offset
+adjustments.foreign_exchange
+
+```
+
+> Digunakan untuk pengakuan pendapatan jasa yang belum selesai (cut-off) dan selisih kurs transaksi internasional.
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.expense.late_penalty_to_shipping
+other.expense.claim_loss_goods
+other.income.insurance_claim
+
+```
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+| Rekening Umum | Rekening Freight Forwarding |
+| :-- | :-- |
+| `income.service.transport.non_final` | `income.service.freight.domestic.non_final` |
+| `expenses.service.vendor_cost.deductible` | `expenses.service.shipping_line_cost.deductible` |
+| `expenses.tax.pph25.non_final` | `expenses.tax.pph25.deductible` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Penerimaan uang muka dari pelanggan | `assets.cash.bank.bca` | `liabilities.unearned.income.advance_payment` |
+| Pembayaran biaya ke shipping line | `expenses.service.shipping_line_cost.deductible` | `assets.cash.bank.mandiri` |
+| Penagihan jasa logistik kepada pelanggan | `assets.receivable.customer.freight` | `income.service.freight.domestic.non_final` |
+| Penagihan biaya reimbursable | `assets.receivable.reimbursable_cost` | `income.other.reimbursable_fee.non_final` |
+| Pembayaran PPh Pasal 25 | `expenses.tax.pph25.deductible` | `assets.cash.bank.bri` |
+| Penyesuaian selisih kurs ekspor | `adjustments.foreign_exchange` | `income.other.currency_gain.non_final` |
+
+---
+
+## 11. Prinsip Umum Rekening Freight Forwarding
+
+1. **Pendapatan Jasa:**  
+   Diakui saat jasa logistik selesai (PSAK 72), termasuk freight, trucking, warehousing, dan clearance.
+
+2. **Pajak:**  
+   Semua pendapatan jasa terutang **PPN 11%** dan **PPh Non-Final (Pasal 17)**.
+
+3. **Reimbursable vs Cost:**  
+   Biaya reimbursable tidak diakui sebagai beban atau pendapatan bersih; hanya arus kas.
+
+4. **Deductibility:**  
+   Semua biaya operasional, transportasi, dan gaji bersifat deductible.
+
+5. **Cut-Off Pendapatan:**  
+   Gunakan akun `adjustments.accrued_service_income` untuk proyek logistik yang belum selesai pada akhir periode.
+
+---
+
+## 12. Kesimpulan
+
+Rekening Semantik Freight Forwarding dirancang untuk memastikan:
+- konsistensi pencatatan jasa logistik lintas moda (laut, udara, darat),  
+- kejelasan pemisahan antara pendapatan, biaya langsung, dan reimbursable,  
+- serta kepatuhan fiskal terhadap **PPh Non-Final** dan **PPN 12%**.
+
+> Dengan struktur semantik ini, sistem akuntansi dapat memahami konteks transaksi logistik —  
+> apakah itu jasa pengiriman, biaya pelabuhan, atau komisi agen — tanpa perlu interpretasi manual.
+```
+
+---
+
+### 📘 Ringkasan Utama
+
+| Elemen                  | Perlakuan                                  |
+| :---------------------- | :----------------------------------------- |
+| **Jenis Usaha**         | Freight Forwarding (KBLI 52292)            |
+| **Jenis Pajak**         | PPh Non-Final (Pasal 17) & PPN 11%         |
+| **Beban Utama**         | Vendor freight, trucking, warehousing      |
+| **Pendapatan Tambahan** | Handling fee, reimbursable fee, storage    |
+| **Tag Pajak**           | `.non_final`                               |
+| **Standar PSAK**        | PSAK 72 (Pendapatan), PSAK 16 (Aset Tetap) |

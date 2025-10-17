@@ -1,25 +1,39 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "mint",
   "name": "Akuntansi Pajak",
   "colors": {
-    "primary": "#eb5611",
-    "light": "#eb5611",
-    "dark": "#eb5611"
+    "primary": "#0095FF",
+    "light": "#1AA3FF",
+    "dark": "#0084E6"
   },
   "icons": {
     "library": "lucide"
   },
+"appearance": "light",
   "seo": {
     "indexing": "all"
   },
   "background": {
-    "image": "/images/background-light.png"
+    "image": "/images/background-dub.png"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": 700
+    },
+    "body": {
+      "family": "Instrument Sans",
+      "weight": 400
+    }
   },
   "styling": {
     "codeblocks": {
-      "theme": "github-light"
+    "theme": {
+      "light": "github-light",
+      "dark": "github-dark"
     }
+  }
   },
   "favicon": "/favicon.ico",
   "navigation": {
@@ -31,33 +45,35 @@
             "group": "Pendahuluan",
             "icon": "rocket",
             "pages": [
-              "index",
+              "get-started/intro",
               "get-started/welcome",
-              "get-started/struktur-sintax",
+              "get-started/struktur-sintaks",
               "get-started/implementation"
             ]
           },
           {
-            "group": "Kategori Akun",
+            "group": "Akun Dasar",
             "icon": "book",
             "pages": [
-              "rekening/aset",
-              "rekening/liabilitas",
-              "rekening/ekuitas",
-              "rekening/pendapatan",
-              "rekening/beban"
+              "akun-dasar/aset",
+              "akun-dasar/liabilitas",
+              "akun-dasar/ekuitas",
+              "akun-dasar/pendapatan",
+              "akun-dasar/beban"
             ]
           },
           {
-            "group": "Template Rekening",
+            "group": "Per Industri",
             "icon": "wallet",
             "pages": [
-              "template/core",
-              "template/konstruksi",
-              "template/real-estate",
-              "template/perdagangan",
-              "template/perdagangan-besar",
-              "template/manufaktur-ringan"
+              "industri/core",
+              "industri/konstruksi",
+              "industri/real-estate",
+              "industri/perdagangan",
+              "industri/perdagangan-besar",
+              "industri/manufaktur-ringan",
+              "industri/pabrik-sawit",
+              "industri/freight-forwarding"
             ]
           }
         ]
@@ -68,19 +84,15 @@
         {
           "anchor": "Grup Telegram",
           "href": "https://t.me/diskusipajak",
-          "icon": "telegram"
-        },
-        {
-          "anchor": "Pembuka",
-          "href": "/index",
-          "icon": "telegram"
+          "icon": "send"
         }
       ]
     }
   },
   "logo": {
     "light": "/logo/logo-diskusi-perpajakan.png",
-    "dark": "/logo/logo-diskusi-perpajakan.png"
+    "dark": "/logo/logo-diskusi-perpajakan.png",
+    "href": "https://akuntansi.diskusipajak.com/"
   },
   "navbar": {
     "links": [

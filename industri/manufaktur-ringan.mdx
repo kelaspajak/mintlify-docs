@@ -1,0 +1,291 @@
+---
+title: Manufaktur Ringan
+description: Struktur path akun untuk usaha manufaktur ringan mencakup bahan baku, proses produksi, barang jadi, dan perlakuan pajak non-final.
+date: 2025-10-15
+mode: "wide"
+---
+
+## 1. Pendahuluan
+
+Rekening Semantik untuk **manufaktur ringan** ditujukan bagi entitas yang memproduksi barang jadi secara internal, baik untuk pasar eceran maupun distribusi, termasuk:
+- pabrik kecil dan menengah (home industry, workshop, pabrikan regional),
+- produsen makanan, minuman, pakaian, kerajinan, dan suku cadang,
+- manufaktur dengan proses sederhana dan sistem biaya langsung (*job order* atau *process costing*).
+
+Struktur ini menekankan:
+- transparansi dalam **alur biaya produksi**,  
+- pencatatan **stok bertingkat** (bahan baku → barang dalam proses → barang jadi), dan  
+- pemisahan jelas antara **biaya produksi, operasional, dan non-produksi**.
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+```
+
+assets.cash.on_hand
+assets.cash.bank.bca
+assets.cash.bank.bri
+assets.cash.digital.qris
+
+```
+
+### 2.2 Piutang dan Uang Muka
+```
+
+assets.receivable.customer
+assets.advance.supplier
+assets.prepaid.expense.production
+assets.prepaid.expense.marketing
+
+```
+
+### 2.3 Persediaan
+```
+
+assets.inventory.raw_material
+assets.inventory.work_in_process
+assets.inventory.finished_goods
+assets.inventory.factory_supplies
+assets.inventory.returned_goods
+
+```
+
+> **Keterangan:**  
+> Akun `work_in_process` digunakan untuk mencatat biaya produksi yang belum selesai (unfinished goods).
+
+### 2.4 Aset Tetap
+```
+
+assets.fixed.machine.production
+assets.fixed.equipment.factory
+assets.fixed.vehicle.delivery
+assets.fixed.property.factory_building
+
+```
+
+### 2.5 Aset Pajak
+```
+
+assets.prepaid.tax.pph25
+assets.prepaid.tax.vat_input
+assets.deferred.tax_asset
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Usaha
+```
+
+liabilities.payable.supplier.material
+liabilities.payable.outsource
+liabilities.payable.utility
+
+```
+
+### 3.2 Kewajiban Pajak
+```
+
+liabilities.tax.payable.vat_output
+liabilities.tax.payable.pph23
+liabilities.tax.payable.pph25
+
+```
+
+### 3.3 Kewajiban Lain-lain
+```
+
+liabilities.accrued.salary
+liabilities.accrued.factory_expense
+liabilities.deposit.received.customer
+
+```
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan struktur umum:
+```
+
+equity.capital.owner.individual
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Pendapatan Penjualan Barang Jadi
+```
+
+income.sales.product.domestic.non_final
+income.sales.product.export.non_final
+income.sales.product.wholesale.non_final
+income.sales.product.retail.non_final
+
+```
+
+> **Penjelasan:**  
+> Pendapatan manufaktur umumnya **objek PPh Non-Final**,  
+> namun Wajib Pajak kecil dengan omzet ≤ Rp4,8 M dapat menggunakan **PPh Final 0,5%** (PP 55/2022).
+
+### 5.2 Pendapatan Jasa Produksi (Outsource)
+```
+
+income.service.production_fee.non_final
+income.service.repair_assembly.non_final
+income.service.contract_job.non_final
+
+```
+
+### 5.3 Pendapatan Lain-lain
+```
+
+income.other.scrap_sale.non_final
+income.other.discount_vendor.non_final
+income.other.interest_income.non_final
+
+```
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Bahan Langsung
+```
+
+expenses.production.material.raw.deductible
+expenses.production.material.packaging.deductible
+expenses.production.material.import_duty.deductible
+
+```
+
+### 6.2 Beban Tenaga Kerja Langsung
+```
+
+expenses.production.labor.direct_wages.deductible
+expenses.production.labor.overtime.deductible
+expenses.production.labor.insurance_bpjs.deductible
+
+```
+
+### 6.3 Beban Overhead Pabrik
+```
+
+expenses.production.overhead.utility.electricity.deductible
+expenses.production.overhead.utility.water.deductible
+expenses.production.overhead.repair_maintenance.deductible
+expenses.production.overhead.depreciation_machine.deductible
+expenses.production.overhead.factory_supplies.deductible
+
+```
+
+### 6.4 Beban Operasional Non-Produksi
+```
+
+expenses.operational.payroll.office_staff.deductible
+expenses.operational.transportation.deductible
+expenses.operational.administration.deductible
+expenses.operational.telecommunication.deductible
+expenses.operational.office_supplies.deductible
+
+```
+
+### 6.5 Beban Pemasaran dan Penjualan
+```
+
+expenses.marketing.advertising.digital.deductible
+expenses.marketing.advertising.print.deductible
+expenses.marketing.discount_customer.deductible
+expenses.marketing.delivery_out.deductible
+
+```
+
+### 6.6 Beban Pajak
+```
+
+expenses.tax.pph25.deductible
+expenses.tax.vat.deductible
+expenses.tax.final_05_percent.final
+
+```
+
+> **Penjelasan:**  
+> `expenses.tax.final_05_percent.final` digunakan hanya bagi Wajib Pajak yang masih menggunakan PPh Final 0,5%.  
+> Bila sudah menjadi wajib pajak reguler, gunakan `expenses.tax.pph25.deductible`.
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.production.in_progress
+adjustments.production.finished_goods
+adjustments.inventory_revaluation
+adjustments.factory_overhead_apportion
+
+```
+
+> Digunakan untuk mengakui perubahan nilai persediaan, biaya produksi yang belum selesai, atau pembebanan overhead ke produk jadi.
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.expense.machine_breakdown
+other.expense.defective_goods
+other.income.insurance_claim
+
+```
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+| Rekening Umum | Rekening Manufaktur |
+| :-- | :-- |
+| `income.sales.product.retail.non_final` | `income.sales.product.domestic.non_final` |
+| `expenses.cogs.purchase_goods.deductible` | `expenses.production.material.raw.deductible` |
+| `assets.inventory.goods.finished` | `assets.inventory.finished_goods` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Pembelian bahan baku | `assets.inventory.raw_material` | `liabilities.payable.supplier.material` |
+| Penggunaan bahan ke produksi | `assets.inventory.work_in_process` | `assets.inventory.raw_material` |
+| Gaji tenaga kerja pabrik | `expenses.production.labor.direct_wages.deductible` | `assets.cash.bank.bca` |
+| Biaya listrik pabrik | `expenses.production.overhead.utility.electricity.deductible` | `assets.cash.bank.bri` |
+| Penyelesaian barang jadi | `assets.inventory.finished_goods` | `assets.inventory.work_in_process` |
+| Penjualan barang jadi | `assets.receivable.customer` | `income.sales.product.domestic.non_final` |
+| Pembayaran PPh 25 | `expenses.tax.pph25.deductible` | `assets.cash.bank.bca` |
+
+---
+
+## 11. Prinsip Umum Rekening Manufaktur
+
+1. **Alur Biaya Produksi:**
+   - Semua biaya bahan, tenaga kerja, dan overhead dikumpulkan di `assets.inventory.work_in_process`.
+   - Setelah produk selesai, dipindahkan ke `assets.inventory.finished_goods`.
+   - Saat dijual, dikeluarkan melalui akun HPP.
+
+2. **Tag Pajak:**
+   - Gunakan `.non_final` untuk usaha reguler.  
+   - Gunakan `.final` hanya jika masih dalam skema PPh Final 0,5%.
+
+3. **Keterlacakan Biaya:**
+   - Setiap elemen biaya dapat ditelusuri berdasarkan jenis (`material`, `labor`, `overhead`).
+
+4. **Integrasi Multi-Level:**
+   - Cocok untuk sistem ERP sederhana dengan alur “Beli–Produksi–Jual”.
+
+5. **Kepatuhan Fiskal:**
+   - Biaya produksi dan operasional bersifat **deductible** untuk penghitungan pajak penghasilan reguler.

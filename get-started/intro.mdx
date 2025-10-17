@@ -1,0 +1,137 @@
+---
+title: "Introduction"
+---
+
+Yth. pengunjung,
+
+Selamat datang di rumah baru dokumentasi Standar Penamaan Akun Less Summer. Kami mengundangmu mengenal Rekening Semantik, kerangka penamaan akun yang mengganti kode numerik menjadi path hierarkis deskriptif agar manusia dan sistem berbagi bahasa yang sama.
+
+Standar ini menjawab tantangan sistem lama yang sulit diintegrasikan, penuh ambiguitas, dan menghambat otomatisasi. Dengan struktur storytelling seperti `assets.cash.bank.mandiri`, setiap akun berubah menjadi narasi jelas tentang peran ekonominya.
+
+Format penulisan mengikuti pola `[rekening].[kategori].[subkategori].[detail].[spesifik]`, menjaga konsistensi sekaligus fleksibilitas. Kamu akan menemukan contoh lengkap untuk lima elemen utama laporan keuangan—aset, liabilitas, ekuitas, pendapatan, dan beban—beserta ilustrasi path yang siap dipakai.
+
+Kami merekomendasikan pendekatan dual system: pertahankan kode lama sambil menambahkan kolom `standard_account_path` agar sistem akuntansi, ERP, dan API langsung memahami konteks akun tanpa pemetaan manual.
+
+Manfaatnya menyentuh laporan keuangan, audit pajak, otomasi, dan kolaborasi lintas tim, karena semua pihak membaca istilah yang sama. Ikuti praktik terbaik kami: pakai huruf kecil, batasi kedalaman tiga hingga lima level, tambahkan akun secara berjenjang, lakukan audit berkala, dan gunakan istilah universal yang relevan dengan regulasi Indonesia.
+
+Standar ini dirancang kompatibel dengan regulasi pajak lokal, sistem ERP modern, integrasi API, dan kerangka IFRS/PSAK. Ia menjadi jembatan semantik antara pencatatan klasik dan ekosistem digital.
+
+Untuk eksplorasi mendalam, telusuri tiga bagian utama dokumentasi: pengantar dan filosofi, struktur dan sintaks, elemen serta contoh akun, lalu panduan implementasi dan praktik terbaik. Kalau ingin langsung membangun situs dokumentasi, kami juga menyediakan template core akun dan template akun per industri.
+
+Kami berharap surat ini membuatmu siap menggali lebih jauh dan memanfaatkan standar baru ini untuk menceritakan kisah finansial organisasi secara transparan dan otomatis.
+
+Salam hangat,
+Less Summer
+
+## Mulai dari pendahuluan
+
+<Columns cols={3}>
+  <Card
+    title="Pengantar standar"
+    icon="rocket"
+    href="/get-started/welcome"
+  >
+    Kenali latar belakang dan filosofi Rekening Semantik.
+  </Card>
+  <Card
+    title="Quickstart"
+    icon="list-checks"
+    href="/get-started/quickstart"
+  >
+    Ikuti panduan tiga langkah untuk mulai menggunakan standar.
+  </Card>
+  <Card
+    title="Implementasi"
+    icon="settings"
+    href="/get-started/implementation"
+  >
+    Terapkan standar di sistem akuntansimu tanpa migrasi penuh.
+  </Card>
+</Columns>
+
+## Pelajari kategori akun
+
+<Columns cols={3}>
+  <Card
+    title="Aset"
+    icon="wallet"
+    href="/rekening/aset"
+  >
+    Pahami struktur akun aset dan contoh path semantiknya.
+  </Card>
+  <Card
+    title="Liabilitas"
+    icon="scale"
+    href="/rekening/liabilitas"
+  >
+    Telusuri kewajiban dan cara memetakannya ke path standar.
+  </Card>
+  <Card
+    title="Ekuitas"
+    icon="bar-chart-3"
+    href="/rekening/ekuitas"
+  >
+    Dokumentasikan hak residual organisasi secara konsisten.
+  </Card>
+  <Card
+    title="Pendapatan"
+    icon="coins"
+    href="/rekening/pendapatan"
+  >
+    Susun akun pendapatan yang deskriptif dan mudah dianalisis.
+  </Card>
+  <Card
+    title="Beban"
+    icon="receipt"
+    href="/rekening/beban"
+  >
+    Kelompokkan pengeluaran operasional dengan path yang rapi.
+  </Card>
+</Columns>
+
+## Gunakan template rekening
+
+<Columns cols={3}>
+  <Card
+    title="Template inti"
+    icon="layers"
+    href="/template/core"
+  >
+    Mulai dari daftar akun standar yang relevan di berbagai industri.
+  </Card>
+  <Card
+    title="Konstruksi"
+    icon="hard-hat"
+    href="/template/konstruksi"
+  >
+    Terapkan path khusus proyek konstruksi dan jasa terkait.
+  </Card>
+  <Card
+    title="Real estate"
+    icon="building-2"
+    href="/template/real-estate"
+  >
+    Kelola portofolio properti dengan akuntansi semantik.
+  </Card>
+  <Card
+    title="Perdagangan"
+    icon="shopping-cart"
+    href="/template/perdagangan"
+  >
+    Optimalkan pencatatan untuk usaha retail dan distribusi.
+  </Card>
+  <Card
+    title="Perdagangan besar"
+    icon="truck"
+    href="/template/perdagangan-besar"
+  >
+    Catat aktivitas grosir dengan pelacakan stok dan margin jelas.
+  </Card>
+  <Card
+    title="Manufaktur ringan"
+    icon="factory"
+    href="/template/manufaktur-ringan"
+  >
+    Documentasikan proses produksi dengan struktur akun bertahap.
+  </Card>
+</Columns>

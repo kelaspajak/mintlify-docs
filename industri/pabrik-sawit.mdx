@@ -1,0 +1,318 @@
+---
+title: Pabrik Sawit
+description: Struktur path akun untuk usaha pengolahan kelapa sawit, mencakup pembelian TBS dari petani, proses pabrik, penjualan hasil, aktivitas kebun, serta tanggung jawab sosial (CSR).
+date: 2025-10-15
+mode: "wide"
+---
+
+# Rekening Semantik Khusus: Pabrikan Sawit
+
+## 1. Pendahuluan
+
+Rekening Semantik untuk **pabrikan sawit** mencakup seluruh rantai nilai industri kelapa sawit, mulai dari **pembelian bahan baku (TBS)** hingga **penjualan hasil olahan (CPO, kernel, minyak goreng)**, termasuk **aktivitas kebun, pemupukan, transportasi, dan CSR**.
+
+Kegiatan usaha ini dikategorikan sebagai **industri pengolahan hasil pertanian (KBLI 10432: Industri Minyak Kelapa Sawit)**, dan dikenakan **PPh Non-Final (Pasal 17)** serta **PPN 12%** dengan DPP 11/12 atas penyerahan hasil olahan.
+
+---
+
+## 2. Aset (Assets)
+
+### 2.1 Kas dan Setara Kas
+```
+
+assets.cash.on_hand
+assets.cash.bank.bca
+assets.cash.bank.bri
+assets.cash.bank.mandiri
+assets.cash.digital.qris
+
+```
+
+### 2.2 Piutang dan Uang Muka
+```
+
+assets.receivable.customer
+assets.advance.payment_to_farmer
+assets.advance.payment_to_supplier
+assets.prepaid.expense.fertilizer
+assets.prepaid.expense.transport
+
+```
+
+### 2.3 Persediaan
+```
+
+assets.inventory.raw_material.tbs
+assets.inventory.raw_material.kernel
+assets.inventory.work_in_process.crude_oil
+assets.inventory.finished_goods.cpo
+assets.inventory.finished_goods.palm_kernel_oil
+assets.inventory.factory_supplies
+assets.inventory.fertilizer
+assets.inventory.seedling
+
+```
+
+> **Keterangan:**  
+> - `tbs` = tandan buah segar dari petani/pedagang pengumpul.  
+> - `work_in_process.crude_oil` digunakan untuk pencatatan selama tahap ekstraksi dan klarifikasi.
+
+### 2.4 Aset Tetap
+```
+
+assets.fixed.factory.building
+assets.fixed.machine.press
+assets.fixed.machine.boiler
+assets.fixed.machine.crude_clarifier
+assets.fixed.vehicle.truck_tbs
+assets.fixed.vehicle.tanker_cpo
+assets.fixed.land.plantation
+assets.fixed.infrastructure.road_internal
+assets.fixed.infrastructure.bridge
+
+```
+
+> **Catatan:**  
+> `assets.fixed.land.plantation` termasuk lahan inti dan plasma bila dimiliki langsung oleh perusahaan.
+
+### 2.5 Aset Pajak dan Sosial
+```
+
+assets.prepaid.tax.pph25
+assets.prepaid.tax.vat_input
+assets.prepaid.tax.pph23
+assets.deferred.tax_asset
+assets.prepaid.csr_fund
+
+```
+
+---
+
+## 3. Kewajiban (Liabilities)
+
+### 3.1 Utang Usaha dan Akrual
+```
+
+liabilities.payable.farmer_tbs
+liabilities.payable.supplier_fertilizer
+liabilities.payable.contractor_repair
+liabilities.accrued.salary
+liabilities.accrued.utility
+
+```
+
+### 3.2 Kewajiban Pajak
+```
+
+liabilities.tax.payable.vat_output
+liabilities.tax.payable.pph23
+liabilities.tax.payable.pph25
+
+```
+
+### 3.3 Kewajiban Sosial dan CSR
+```
+
+liabilities.csr.commitment.community_program
+liabilities.csr.commitment.infrastructure
+liabilities.csr.commitment.farmer_support
+
+```
+
+> **Penjelasan:**  
+> Dana CSR diakui sebagai kewajiban saat telah dijanjikan kepada masyarakat atau pemerintah daerah, dan dibukukan sebagai beban saat realisasi.
+
+---
+
+## 4. Ekuitas (Equity)
+Gunakan struktur umum:
+```
+
+equity.capital.owner.corporate
+equity.retained_earnings.current_year
+
+```
+
+---
+
+## 5. Pendapatan (Income)
+
+### 5.1 Penjualan Produk Utama
+```
+
+income.sales.product.cpo.non_final
+income.sales.product.palm_kernel_oil.non_final
+income.sales.product.palm_kernel_shell.non_final
+income.sales.product.refined_palm_oil.non_final
+
+```
+
+> **Penjelasan:**  
+> Penjualan hasil produksi CPO dan turunannya merupakan objek **PPh Non-Final (Pasal 17)** dan **PPN 11%**.
+
+### 5.2 Pendapatan Lainnya
+```
+
+income.other.service_milling.non_final
+income.other.sales_byproduct.non_final
+income.other.interest_income.non_final
+income.other.subsidy_incentive.non_final
+
+```
+
+> **Keterangan:**  
+> `service_milling` digunakan untuk jasa pengolahan TBS milik pihak ketiga.
+
+---
+
+## 6. Beban (Expenses)
+
+### 6.1 Beban Bahan Baku
+```
+
+expenses.production.material.tbs_purchase.deductible
+expenses.production.material.kernel_purchase.deductible
+expenses.production.material.freight_in.deductible
+
+```
+
+### 6.2 Beban Tenaga Kerja
+```
+
+expenses.production.labor.factory_wages.deductible
+expenses.production.labor.overtime.deductible
+expenses.production.labor.insurance_bpjs.deductible
+expenses.plantation.labor.harvest_wages.deductible
+expenses.plantation.labor.field_maintenance.deductible
+
+```
+
+### 6.3 Beban Overhead Pabrik
+```
+
+expenses.production.overhead.utility.electricity.deductible
+expenses.production.overhead.utility.water.deductible
+expenses.production.overhead.maintenance.deductible
+expenses.production.overhead.depreciation_machine.deductible
+expenses.production.overhead.factory_supplies.deductible
+
+```
+
+### 6.4 Beban Perkebunan (Plantation)
+```
+
+expenses.plantation.fertilizer_purchase.deductible
+expenses.plantation.seedling_cost.deductible
+expenses.plantation.pesticide_cost.deductible
+expenses.plantation.land_clearing.deductible
+expenses.plantation.road_maintenance.deductible
+
+```
+
+### 6.5 Beban Transportasi dan Logistik
+```
+
+expenses.logistic.freight_out.deductible
+expenses.logistic.vehicle_fuel.deductible
+expenses.logistic.vehicle_maintenance.deductible
+expenses.logistic.third_party_service.deductible
+
+```
+
+### 6.6 Beban Administrasi dan Umum
+```
+
+expenses.administrative.office_supplies.deductible
+expenses.administrative.telecommunication.deductible
+expenses.administrative.bank_fee.deductible
+expenses.administrative.professional_fee.deductible
+expenses.administrative.software_subscription.deductible
+
+```
+
+### 6.7 Beban CSR dan Sosial
+```
+
+expenses.csr.community_support.non_deductible
+expenses.csr.education_program.non_deductible
+expenses.csr.infrastructure_assistance.non_deductible
+expenses.csr.environmental_preservation.non_deductible
+
+```
+
+> **Penjelasan:**  
+> Beban CSR umumnya **non-deductible secara fiskal**, kecuali memenuhi kriteria sesuai **Pasal 6 ayat (1) UU PPh jo. PP 93 Tahun 2010**.
+
+### 6.8 Beban Pajak
+```
+
+expenses.tax.pph25.deductible
+expenses.tax.vat.deductible
+expenses.tax.pph23.deductible
+
+```
+
+---
+
+## 7. Akun Penyesuaian (Adjustments)
+```
+
+adjustments.inventory_wip_to_finished
+adjustments.factory_overhead_apportion
+adjustments.depreciation_revaluation
+adjustments.csr_commitment_realization
+
+```
+
+---
+
+## 8. Akun Lain-lain (Miscellaneous)
+```
+
+other.expense.forest_fire_loss
+other.expense.machine_breakdown
+other.income.asset_sale_gain
+
+```
+
+---
+
+## 9. Integrasi dengan Rekening Umum
+
+| Rekening Umum | Rekening Sawit |
+| :-- | :-- |
+| `income.sales.product.non_final` | `income.sales.product.cpo.non_final` |
+| `expenses.production.material.raw.deductible` | `expenses.production.material.tbs_purchase.deductible` |
+| `expenses.csr.non_deductible` | `expenses.csr.community_support.non_deductible` |
+
+---
+
+## 10. Contoh Transaksi
+
+| Transaksi | Debit | Kredit |
+| :-- | :-- | :-- |
+| Pembelian TBS dari petani | `assets.inventory.raw_material.tbs` | `liabilities.payable.farmer_tbs` |
+| Penggunaan TBS ke proses produksi | `assets.inventory.work_in_process.crude_oil` | `assets.inventory.raw_material.tbs` |
+| Penyelesaian CPO | `assets.inventory.finished_goods.cpo` | `assets.inventory.work_in_process.crude_oil` |
+| Penjualan CPO | `assets.receivable.customer` | `income.sales.product.cpo.non_final` |
+| Pembelian pupuk | `assets.inventory.fertilizer` | `liabilities.payable.supplier_fertilizer` |
+| Realisasi CSR | `expenses.csr.community_support.non_deductible` | `assets.cash.bank.bca` |
+
+---
+
+## 11. Prinsip Umum Rekening Pabrikan Sawit
+
+1. **Integrasi Hulu–Hilir:**  
+   Struktur menggabungkan aspek perkebunan (plantation), pabrik (manufacturing), dan distribusi hasil olahan.
+
+2. **Deductibility dan CSR:**  
+   Biaya produksi bersifat deductible, sedangkan CSR non-deductible kecuali memenuhi PP 93/2010.
+
+3. **PPN dan Pajak Penghasilan:**  
+   Penjualan CPO dan turunannya merupakan **objek PPN 11% dan PPh Non-Final (Pasal 17)**.
+
+4. **Keterlacakan Semantik:**  
+   Tag semantik memungkinkan sistem mengenali aktivitas spesifik — pembelian TBS, pengolahan, hingga CSR.
+
+5. **Kepatuhan PSAK:**  
+   Mengacu pada **PSAK 69 (Agrikultur)** dan **PSAK 14 (Persediaan)**.
